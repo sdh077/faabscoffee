@@ -4,11 +4,7 @@
 </script>
 
 <div class="relative h-screen w-screen bg-cover" style="background-image: url('/bg.png');">
-	<div class="dim-overlay">
-		<div class="border-b-[1px] border-white py-8 text-center text-4xl font-thin text-white">
-			FAABS COFFEE
-		</div>
-	</div>
+	<div class="dim-overlay"></div>
 </div>
 
 <style>
