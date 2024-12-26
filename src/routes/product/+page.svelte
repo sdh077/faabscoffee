@@ -120,18 +120,31 @@
 			img: 'https://shop-phinf.pstatic.net/20240508_79/1715104858819UyqIb_JPEG/116240757528589803_1089254217.jpg?type=f295_381'
 		}
 	];
+
+	// function enuriPercent(a, b) {
+	// 	console.log(a, b);
+	// 	return (Number(a) + Number(b)) * 100;
+	// }
 </script>
 
 <div class="container">
 	<ul class="grid grid-cols-4 gap-8">
 		{#each products as product}
-			<li>
+			<li
+				class="cursor-pointer transition delay-0 duration-300 ease-in-out hover:-translate-y-2 hover:scale-100"
+			>
 				<a href={`https://smartstore.naver.com${product.link}`} target="_blank">
-					<img src={product.img} />
-					<div>{product.name}</div>
-					<div class="flex gap-2">
-						{product.price}
-						{product.originalPrice}
+					<img src={product.img} class="rounded-lg" alt="" />
+					<div class="p-2 font-medium tracking-tighter">{product.name}</div>
+					<div class="flex gap-2 p-2">
+						<p>{product.price}원</p>
+
+						{#if product.originalPrice != ''}
+							<p class="text-gray-500 line-through">{product.originalPrice}원</p>
+							<!-- <p>
+								{enuriPercent(product.price, product.originalPrice)}
+							</p> -->
+						{/if}
 					</div>
 				</a>
 			</li>
