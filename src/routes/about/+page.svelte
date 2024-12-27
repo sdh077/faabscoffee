@@ -9,9 +9,7 @@
 </script>
 
 <div class="">
-	<div class="text-center text-3xl font-light tracking-wide">ABOUT FAABS</div>
-
-	<div class="grid grid-cols-3 py-10">
+	<div class="grid grid-cols-2 py-10">
 		<button class={tabItem == 1 ? activeTabClass : defaultTabClass} on:click={() => (tabItem = 1)}
 			>Brand</button
 		>

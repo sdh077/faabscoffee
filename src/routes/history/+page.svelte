@@ -41,13 +41,13 @@
 
 <div class="container">
 	{#each histories as h}
-		<div class="py-10">
+		<div class="pb-10">
 			<div class="flex">
 				<p class="text-2xl">{h.year}</p>
 				<div class="mb-4 ml-5 w-full border-b border-gray-500"></div>
 			</div>
 			<img src={h.image} class="mt-2 w-full rounded-xl p-1" alt="" />
-			<div class="p-4 indent-2 text-lg font-light leading-loose tracking-wide">
+			<div class="p-4 indent-2 text-sm font-light leading-loose tracking-wide md:text-lg">
 				{h.content}
 			</div>
 		</div>

@@ -128,15 +128,15 @@
 </script>
 
 <div class="container">
-	<ul class="grid grid-cols-4 gap-8">
+	<ul class="grid grid-cols-2 gap-8 md:grid-cols-4">
 		{#each products as product}
 			<li
 				class="cursor-pointer transition delay-0 duration-300 ease-in-out hover:-translate-y-2 hover:scale-100"
 			>
 				<a href={`https://smartstore.naver.com${product.link}`} target="_blank">
 					<img src={product.img} class="rounded-lg" alt="" />
-					<div class="p-2 font-medium tracking-tighter">{product.name}</div>
-					<div class="flex gap-2 p-2">
+					<div class="p-2 text-sm font-medium tracking-tighter sm:text-base">{product.name}</div>
+					<div class="flex gap-2 p-2 text-sm sm:text-base">
 						<p>{product.price}원</p>
 
 						{#if product.originalPrice != ''}
