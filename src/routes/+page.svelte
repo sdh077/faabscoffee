@@ -1,6 +1,5 @@
 <script lang="ts">
 	let { data } = $props();
-	console.log(data);
 </script>
 
 <div class="relative h-[90vh] w-screen bg-cover" style="background-image: url('/bg.png');">

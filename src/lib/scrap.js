@@ -15937,7 +15937,6 @@ const scrapeNaverStore = async () => {
                 products.push({ name, price, link, originalPrice, img });
             }
         });
-        console.log(products)
 
         return products;
     } catch (error) {

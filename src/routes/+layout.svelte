@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { Toaster } from '$lib/components/ui/sonner';
 	import '../app.css';
 	let { children } = $props();
 </script>
 
-<div class="text-primary z-50 w-full border-b-[1px] border-white bg-white py-6 font-thin md:fixed">
+<div class="text-primary z-50 w-full border-b-[1px] border-white bg-white py-6 font-thin md:sticky">
 	<div class="container flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
 		<a href="/" class="w-full">
 			<img src="/faabslogo.png" class="w-40" />
@@ -17,5 +17,5 @@
 		</div>
 	</div>
 </div>
-<div class="md:h-[90px]" />
+<Toaster />
 {@render children()}
