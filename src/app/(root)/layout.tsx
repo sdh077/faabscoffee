@@ -1,13 +1,8 @@
 import React, { ReactNode } from 'react'
-import { redirect } from 'next/navigation'
-import { auth } from '@/auth'
 import Link from 'next/link'
 import Image from 'next/image'
 
 const Layout = async ({ children }: { children: ReactNode }) => {
-  const session = await auth()
-
-  if (!session) redirect('/sign-in')
   return (
     <>
       <div className="top-0 z-50 w-full border-b-[1px] border-white bg-white md:fixed">
