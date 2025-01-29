@@ -10,7 +10,7 @@ const Hero = () => {
         <section className='container h-[300px] md:h-[80vh] bg-cover relative' style={{
             backgroundImage: 'url(/3000.jpg)'
         }}>
-            <div className='text-white absolute bottom-16'>
+            <div className='text-white absolute bottom-24 flex flex-col gap-36'>
                 <div className=' text-3xl md:text-[120px]'>Wholesale</div>
                 <div className='md:w-[600px] text-2xl'>
                     We travel the world in search of the most diverse and flavourful range of specialty coffee for our wholesale community.
@@ -54,6 +54,36 @@ const WholesaleLink = ({ links }: { links: { title: string, description: string,
         </section >
     )
 }
+const WholesaleBanner = () => {
+    return (
+        <section className='bg-[#B69FBF] h-full w-full py-8'>
+            <div className='grid md:grid-cols-2'>
+                <div className='relative min-h-[300px] w-full'>
+                    <Image src='circle.svg' alt='circle' fill />
+                </div>
+                <div>
+                    <div className='leading-10 text-3xl'>
+                        Unlock Your Potential as an Ultimate Coffee Host with the Ozone Coffee Academy
+                    </div>
+                    <div>
+                        Unlock your barista potential and earn the prestigious title of "Ozone Ultimate Coffee Host" at the Ozone Coffee Academy! Designed exclusively for our Wholesale Partners, this comprehensive course offers a unique opportunity to elevate your coffee expertise while deepening your connection with Ozone Coffee.
+                        <br />
+                        <br />
+                        <br />
+                        Our expertly crafted modules cater to all skill levels, covering fundamental espresso skills, advanced techniques like latte art, sensory training, and machinery maintenance. Upon completing all 6 modules, you'll have the chance to demonstrate your knowledge through a short practical and written exam. Successfully passing will earn you the exclusive Ultimate Coffee Host pin badge—a distinguished symbol of your dedication to coffee excellence and your partnership with Ozone Coffee.
+                        <br />
+                        <br />
+                        <br />
+                        Get in touch with us today to learn more about becoming an Ozone Wholesale Partner and unlocking this transformative learning experience!
+
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    )
+}
 const page = () => {
     const links = [
         {
@@ -78,36 +108,7 @@ const page = () => {
         }
     ]
 
-    const WholesaleBanner = () => {
-        return (
-            <section className='bg-[#B69FBF] h-full w-full py-8'>
-                <div className='grid md:grid-cols-2'>
-                    <div className='relative min-h-[300px] w-full'>
-                        <Image src='circle.svg' alt='circle' fill />
-                    </div>
-                    <div>
-                        <div className='leading-10 text-3xl'>
-                            Unlock Your Potential as an Ultimate Coffee Host with the Ozone Coffee Academy
-                        </div>
-                        <div>
-                            Unlock your barista potential and earn the prestigious title of "Ozone Ultimate Coffee Host" at the Ozone Coffee Academy! Designed exclusively for our Wholesale Partners, this comprehensive course offers a unique opportunity to elevate your coffee expertise while deepening your connection with Ozone Coffee.
-                            <br />
-                            <br />
-                            <br />
-                            Our expertly crafted modules cater to all skill levels, covering fundamental espresso skills, advanced techniques like latte art, sensory training, and machinery maintenance. Upon completing all 6 modules, you'll have the chance to demonstrate your knowledge through a short practical and written exam. Successfully passing will earn you the exclusive Ultimate Coffee Host pin badge—a distinguished symbol of your dedication to coffee excellence and your partnership with Ozone Coffee.
-                            <br />
-                            <br />
-                            <br />
-                            Get in touch with us today to learn more about becoming an Ozone Wholesale Partner and unlocking this transformative learning experience!
 
-
-                        </div>
-                    </div>
-
-                </div>
-            </section>
-        )
-    }
     return (
         <main className='flex flex-col gap-32'>
             <Hero />

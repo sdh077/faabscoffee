@@ -3,28 +3,29 @@ import { Button } from '@/components/ui/button'
 import { Link } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
-
 const Hero = () => {
   return (
-    <section className='container h-[80vh] bg-cover relative' style={{
-      backgroundImage: 'url(/3000.jpg)'
+    <section className='container h-[300px] md:h-[80vh] bg-cover relative object-center' style={{
+      backgroundImage: 'url(/2000.jpg)'
     }}>
-      <div className='text-white absolute bottom-16'>
-        <div className='text-[120px]'>Wholesale</div>
-        <div className='w-[600px] text-2xl'>
-          We travel the world in search of the most diverse and flavourful range of specialty coffee for our wholesale community.
+      <div className='text-white absolute bottom-24 flex flex-col gap-36'>
+        <div className=' text-3xl md:text-[120px]'>
+          Welcome to our world!
+        </div>
+        <div className='md:w-[600px] text-2xl'>
+          Let’s put some colour in that cup, shall we?
         </div>
       </div>
     </section>
   )
 }
-const WholesaleLink = ({ links }: { links: { title: string, description: string, link: string }[] }) => {
+const MainLink = ({ links }: { links: { title: string, description: string, link?: string }[] }) => {
   return (
-    <section className="container py-6 ">
+    <section className="container pt-6 ">
       <SectionTitle>
         SHOP COFFEE
       </SectionTitle>
-      <ul className="home-items grid grid-cols-1 gap-12 py-16 md:grid-cols-2 xl:grid-cols-4 ">
+      <ul className="home-items grid grid-cols-1 gap-12 pt-16 md:grid-cols-2 xl:grid-cols-4 ">
         {links.map(link =>
           <li className="home-item relative flex flex-col gap-6 w-full" key={link.title}>
             <div className="flex flex-col gap-6 w-full">
@@ -35,7 +36,7 @@ const WholesaleLink = ({ links }: { links: { title: string, description: string,
             <div className="">
               {link.description}
             </div>
-            {!!link.link && <div className="">
+            {link.link && <div className="">
               <Link href={link.link}>
                 <Button
                   type="button"
@@ -54,67 +55,34 @@ const WholesaleLink = ({ links }: { links: { title: string, description: string,
   )
 }
 const page = () => {
-  const links = [
+  const items = [
     {
-      title: 'Flavours from Far and Wide',
-      description: 'We’re unapologetically obsessed with flavour and travel the world to find the most exciting coffees and offer boundless variety.',
-      link: ''
+      title: 'Incredible Flavour and Variety',
+      description: 'A constantly evolving range of rare special editions, seasonal favourites, delicious single origins and classic Ozone blends.Handpicked by our team of experts, we bring you the best variety and flavours in specialty coffee.'
     },
     {
-      title: "Transparent, Direct Relationships",
-      description: "We’ve built long-term relationships and source from world-class producers who are paving the way for more sustainable and ethical coffee.",
-      link: ''
+      title: 'Roasted fresh',
+      description: 'With uncompromising quality comes uncompromising freshness.Our coffee is roasted fresh to order, every day of the working week at our Stafford roastery on either our 2kg, 12kg, 25kg or 60kg roasters.That’s a promise.'
     },
     {
-      title: 'Single Origins2',
-      description: 'Exceptional flavours sourced directly and sustainably from our long-term partners at origin.',
-      link: ''
+      title: 'Subscription Coffee',
+      description: 'Go on a new coffee adventure every week with our much - loved and always flexible In My Mug subscription.Receive a new single origin that’s handpicked and roasted by our team.'
     },
     {
-      title: "Subscriptions3",
-      description: "A sad day if you've run out! Super easy and flexible, we roast the good stuff - you pause or cancel whenever you fancy.",
-      link: ''
+      title: 'Responsibly Sourcing',
+      description: 'We source directly from our long - term, world - class producer partners who are paving the way for more sustainable and ethical coffee production.'
     }
   ]
-
-  const WholesaleBanner = () => {
-    return (
-      <section className='bg-[#B69FBF] h-full w-full py-8'>
-        <div className='grid md:grid-cols-2'>
-          <div className='relative'>
-            <Image src='circle.svg' alt='circle' fill />
-          </div>
-          <div>
-            <div className='leading-10 text-3xl'>
-              Unlock Your Potential as an Ultimate Coffee Host with the Ozone Coffee Academy
-            </div>
-            <div>
-              Unlock your barista potential and earn the prestigious title of "Ozone Ultimate Coffee Host" at the Ozone Coffee Academy! Designed exclusively for our Wholesale Partners, this comprehensive course offers a unique opportunity to elevate your coffee expertise while deepening your connection with Ozone Coffee.
-              <br />
-              <br />
-              <br />
-              Our expertly crafted modules cater to all skill levels, covering fundamental espresso skills, advanced techniques like latte art, sensory training, and machinery maintenance. Upon completing all 6 modules, you'll have the chance to demonstrate your knowledge through a short practical and written exam. Successfully passing will earn you the exclusive Ultimate Coffee Host pin badge—a distinguished symbol of your dedication to coffee excellence and your partnership with Ozone Coffee.
-              <br />
-              <br />
-              <br />
-              Get in touch with us today to learn more about becoming an Ozone Wholesale Partner and unlocking this transformative learning experience!
-
-
-            </div>
-          </div>
-
-        </div>
-      </section>
-    )
-  }
   return (
     <main className='flex flex-col gap-32'>
       <Hero />
-      <div className='w-[600px] ml-[2rem] leading-8'>
-        Whether you’re a coffee shop, cafe, restaurant, hotel, office, or retailer, we offer everything you need to make the perfect cup, and then some. Our team is full of experts and highly trained baristas who love all things specialty coffee. We’re here to guide you with knowledge, training, great coffee experiences and more.
+      <MainLink links={items} />
+      <div className='md:w-[50%] flex gap-4 flex-col ml-[2rem]'>
+        <div>What we stand for</div>
+        <div>We’ve always gone the extra mile to bring new coffee experiences to our customers. The coffee world can sometimes feel a little complex, but we pride ourselves in making specialty coffee enjoyable for everyone. Whether you’re a connoisseur or newbie, a single origin expert or a blend enthusiast, we’re always here to share the wisdom we’ve gained over the past 25 years and help you discover new coffees and classic favourites along the way.</div>
+        <div>Because for us, the detail is where we thrive. From our long-term, transparent relationships with farmers to our detailed flavour descriptions and how we strive to roast each coffee perfectly for you. It’s how we get to excellence in everything we do and what drives us to continue sourcing remarkable flavours from every corner of the world.</div>
+        <div>Welcome to Ozone - the home of your Ultimate Coffee Host. Let’s brew this.</div>
       </div>
-      <WholesaleLink links={links} />
-      <WholesaleBanner />
     </main>
   )
 }

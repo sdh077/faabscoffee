@@ -13,17 +13,26 @@ const getCategory = async () => {
     .returns<IGoodsCategory[]>()
 }
 
-const getGoods = async () => {
+const getGoods = async (category: string) => {
   const supabase = await createClient()
+  console.log(category)
   return await supabase
     .from('goods')
     .select('*')
+    .eq('category_id', category)
     .returns<IGoods[]>()
 }
 
-const Page = async () => {
+export async function Page({
+  searchParams,
+}: {
+  searchParams: Promise<{ category: string }>
+}) {
+  const { category } = await searchParams
+
   const { data: goodsCategory, error } = await getCategory()
-  const { data: goods } = await getGoods()
+  const categoryNo = (category ?? '1') as string
+  const { data: goods } = await getGoods(categoryNo)
   if (!goodsCategory) return <></>
   return (
     <section className="container py-6 flex flex-col gap-4 ">

@@ -24,17 +24,18 @@ interface Props {
 }
 
 export function FilterSelection({ title, label, items }: Props) {
+  const [open, onOpenChange] = React.useState(false)
   const searchParams = useSearchParams();
   const params = new URLSearchParams(searchParams.toString());
   const routerPush = useRouterPush()
   const [position, setPosition] = React.useState(params.get(title) ?? '1')
 
   return (
-    <DropdownMenu>
+    <DropdownMenu open={open} onOpenChange={onOpenChange}>
       <DropdownMenuTrigger asChild>
         <button className="text-xl flex gap-4">
           {title.toLocaleUpperCase()}
-          <Image src='/upArrow.svg' alt='up' width={30} height={30} />
+          <Image src={open ? '/upArrow.svg' : '/downArrow.svg'} alt='up' width={30} height={30} />
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
