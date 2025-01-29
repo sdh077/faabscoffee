@@ -1,3 +1,4 @@
+import SectionTitle from '@/components/root/SectionTitle'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -25,9 +26,9 @@ const MainSection = async () => {
 const MainItem = ({ items }: { items: { image: string }[] }) => {
   return (
     <section className="container py-6 ">
-      <div className="underline-black text-4xl ">
+      <SectionTitle >
         FRESHEST ARRIVALS
-      </div>
+      </SectionTitle>
       <ul className="home-items grid grid-cols-1 gap-12 py-16 md:grid-cols-2 xl:grid-cols-4 ">
         {items.map(item =>
           <li className="home-item relative flex flex-col gap-6 " key={item.image}>
@@ -93,9 +94,9 @@ const MainItem = ({ items }: { items: { image: string }[] }) => {
 const MainLink = ({ links }: { links: { title: string, description: string, link: string }[] }) => {
   return (
     <section className="container py-6 ">
-      <div className="underline-black text-4xl ">
+      <SectionTitle>
         SHOP COFFEE
-      </div>
+      </SectionTitle>
       <ul className="home-items grid grid-cols-1 gap-12 py-16 md:grid-cols-2 xl:grid-cols-4 ">
         {links.map(link =>
           <li className="home-item relative flex flex-col gap-6 w-full" key={link.title}>

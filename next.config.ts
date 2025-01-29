@@ -26,6 +26,10 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'ozonecoffee.co.uk',
+      },
+      {
+        protocol: 'https',
+        hostname: 'shop-phinf.pstatic.net'
       }
     ],
   },
