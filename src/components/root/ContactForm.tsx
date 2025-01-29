@@ -100,7 +100,7 @@ const ContactForm = ({ purpose }: { purpose: string }) => {
   ]
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-6 p-10 rounded-xl">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-6 m-4 md:m-10 rounded-xl">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <FormField
             control={form.control}

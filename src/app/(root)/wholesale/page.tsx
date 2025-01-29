@@ -11,8 +11,8 @@ const Hero = () => {
             backgroundImage: 'url(/3000.jpg)'
         }}>
             <div className='text-white absolute bottom-16'>
-                <div className='text-[120px]'>Wholesale</div>
-                <div className='w-[600px] text-2xl'>
+                <div className=' text-3xl md:text-[120px]'>Wholesale</div>
+                <div className='md:w-[600px] text-2xl'>
                     We travel the world in search of the most diverse and flavourful range of specialty coffee for our wholesale community.
                 </div>
             </div>
@@ -111,7 +111,7 @@ const page = () => {
     return (
         <main className='flex flex-col gap-32'>
             <Hero />
-            <div className='w-[600px] ml-[2rem] leading-8'>
+            <div className='md:w-[600px] mx-[2rem] leading-8'>
                 Whether you’re a coffee shop, cafe, restaurant, hotel, office, or retailer, we offer everything you need to make the perfect cup, and then some. Our team is full of experts and highly trained baristas who love all things specialty coffee. We’re here to guide you with knowledge, training, great coffee experiences and more.
             </div>
             <WholesaleLink links={links} />
