@@ -354,18 +354,20 @@
   }
 }
 
-.home-items .home-item:after {
-  content: '';
-  display: block;
-  position: absolute;
-  height: 100%;
-  width: 1px;
-  left: -20px;
-  top: 0;
-  background-color: #161616;
-}
+@media (width >=768px) {
+  .home-items .home-item:after {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 100%;
+    width: 1px;
+    left: -20px;
+    top: 0;
+    background-color: #161616;
+  }
 
-.home-items .home-item:first-child:after {
-  content: '';
-  display: none;
+  .home-items .home-item:first-child:after {
+    content: '';
+    display: none;
+  }
 }

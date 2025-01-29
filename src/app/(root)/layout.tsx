@@ -1,20 +1,21 @@
 import React, { ReactNode } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import Footer from '@/components/Footer'
 
 const Layout = async ({ children }: { children: ReactNode }) => {
   return (
     <>
-      <div className="top-0 z-50 w-full border-b-[1px] border-white bg-white md:fixed">
-        <div className="container flex w-full flex-col justify-between gap-4">
+      <div className="top-0 z-50 w-full border-b-[1px] border-white bg-white fixed">
+        <div className="md:container flex w-full flex-col justify-between gap-4">
           <Link href="/" className="underline-black">
-            <Image src="/faabslogo.png" className="w-80 pt-2" alt="logo" />
-            {/* <div class="w-full text-2xl font-thin md:text-4xl">FAABS COFFEE</div> */}
+            {/* <Image src="/faabslogo.png" width={320} height={40} className="w-80 pt-2" alt="logo" /> */}
+            <div className="px-2 md:px-0 w-full text-3xl font-bold md:text-4xl">FAABS COFFEE</div>
           </Link>
-          <div className="underline-black flex justify-start gap-4 text-sm sm:text-base">
-            {['ABOUT', 'HISTORY', 'PRODUCT', 'CONTACT'].map(menu =>
+          <div className="px-2 md:px-0  underline-black flex justify-start gap-4 text-sm sm:text-base">
+            {['about', 'history', 'product', 'contact'].map(menu =>
               <Link href={`/${menu}`} key={menu}>
-                {menu}
+                {menu.toLocaleUpperCase()}
               </Link>
             )}
           </div>
@@ -22,6 +23,7 @@ const Layout = async ({ children }: { children: ReactNode }) => {
       </div>
       <div className="h-[120px]" />
       {children}
+      <Footer />
     </>
   )
 }

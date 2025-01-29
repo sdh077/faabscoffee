@@ -9,9 +9,9 @@ const MainSection = async () => {
       style={{ backgroundImage: 'url("/bg.png")' }}
     >
       <div className="absolute bottom-4 left-2 z-10 flex flex-col gap-16">
-        <div className="text-8xl font-bold text-white">
-          Koji
-          <br /> Supernatura
+        <div className="text-5xl md:text-8xl font-bold text-white">
+          <div>Koji</div>
+          <div>Supernatura</div>
         </div>
         <div className="text-2xl text-white">
           Our new Extra Rare Special Reserve is here to make January a little more
@@ -19,7 +19,6 @@ const MainSection = async () => {
         </div>
         <button className="w-64 rounded-none bg-black text-white">PREORDER</button>
       </div>
-      <div className="dim-overlay" />
     </section>
   )
 }
