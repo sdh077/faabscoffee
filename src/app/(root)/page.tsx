@@ -6,7 +6,7 @@ import React from 'react'
 const MainSection = async () => {
   return (
     <section
-      className="relative h-[100vh] min-h-[460px] w-screen bg-cover"
+      className="relative h-[300px] md:h-[100vh] min-h-[460px] w-screen bg-cover"
       style={{ backgroundImage: 'url("/bg.png")' }}
     >
       <div className="absolute bottom-4 left-2 z-10 flex flex-col gap-16">

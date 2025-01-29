@@ -7,7 +7,7 @@ import React from 'react'
 
 const Hero = () => {
     return (
-        <section className='container h-[80vh] bg-cover relative' style={{
+        <section className='container h-[300px] md:h-[80vh] bg-cover relative' style={{
             backgroundImage: 'url(/3000.jpg)'
         }}>
             <div className='text-white absolute bottom-16'>
@@ -82,7 +82,7 @@ const page = () => {
         return (
             <section className='bg-[#B69FBF] h-full w-full py-8'>
                 <div className='grid md:grid-cols-2'>
-                    <div className='relative'>
+                    <div className='relative min-h-[300px] w-full'>
                         <Image src='circle.svg' alt='circle' fill />
                     </div>
                     <div>
