@@ -8,24 +8,24 @@ import React from 'react'
 const Hero = () => {
     return (
         <section className='container h-[300px] md:h-[80vh] bg-cover relative' style={{
-            backgroundImage: 'url(/3000.jpg)'
+            backgroundImage: 'url(/bg.png)'
         }}>
             <div className='text-white absolute bottom-24 flex flex-col gap-36'>
                 <div className=' text-3xl md:text-[120px]'>Wholesale</div>
                 <div className='md:w-[600px] text-2xl'>
-                    We travel the world in search of the most diverse and flavourful range of specialty coffee for our wholesale community.
+                    전세계의 다양한 생산자와 소비자를 연결하는 공동체를 만들기 위한 여정에 함께 하실분을 모집합니다.
                 </div>
             </div>
         </section>
     )
 }
-const WholesaleLink = ({ links }: { links: { title: string, description: string, link: string }[] }) => {
+const WholesaleLink = ({ links }: { links: { title: string, description: string, sub: string }[] }) => {
     return (
         <section className="container py-6 ">
             <SectionTitle>
-                SHOP COFFEE
+                커피 솔루션
             </SectionTitle>
-            <ul className="home-items grid grid-cols-1 gap-12 py-16 md:grid-cols-2 xl:grid-cols-4 ">
+            <ul className="home-items grid grid-cols-1 gap-12 py-16 xl:grid-cols-3 ">
                 {links.map(link =>
                     <li className="home-item relative flex flex-col gap-6 w-full" key={link.title}>
                         <div className="flex flex-col gap-6 w-full">
@@ -33,21 +33,12 @@ const WholesaleLink = ({ links }: { links: { title: string, description: string,
                                 {link.title}
                             </div>
                         </div>
+                        <div className='text-xs'>
+                            {link.sub}
+                        </div>
                         <div className="">
                             {link.description}
                         </div>
-                        {!!link.link && <div className="">
-                            <Link href={link.link}>
-                                <Button
-                                    type="button"
-                                    variant={'outline'}
-                                    tabIndex={0}
-                                    data-button-root=""
-                                >
-                                    Start a {link.title}
-                                </Button>
-                            </Link>
-                        </div>}
                     </li>
                 )}
             </ul>
@@ -57,25 +48,34 @@ const WholesaleLink = ({ links }: { links: { title: string, description: string,
 const WholesaleBanner = () => {
     return (
         <section className='bg-[#B69FBF] h-full w-full py-8'>
-            <div className='grid md:grid-cols-2'>
-                <div className='relative min-h-[300px] w-full'>
-                    <Image src='circle.svg' alt='circle' fill />
+            <div className='grid md:grid-cols-2 mx-16'>
+                <div className='relative min-h-[300px] w-full mx-auto'>
+                    <Image src='/fafabean.png' alt='circle' width={300} height={300} />
                 </div>
                 <div>
                     <div className='leading-10 text-3xl'>
-                        Unlock Your Potential as an Ultimate Coffee Host with the Ozone Coffee Academy
+                        커피 솔루션
                     </div>
                     <div>
-                        Unlock your barista potential and earn the prestigious title of "Ozone Ultimate Coffee Host" at the Ozone Coffee Academy! Designed exclusively for our Wholesale Partners, this comprehensive course offers a unique opportunity to elevate your coffee expertise while deepening your connection with Ozone Coffee.
+                        <br />
+                        파트너사의 추출 환경에 맞는 최적의 레시피 제공
+                        사용 중인 머신과 그라인더, 컵 사이즈, 메뉴에 따른 추출환경 개선과 솔루션 제공
+                        머신 및 그라인더 관리 노하우 전달
+                        커피 맛에 영향을 주는 데일리 청소법, 주기적으로 교체해야 하는 소모품도 안내드립니다.
                         <br />
                         <br />
                         <br />
-                        Our expertly crafted modules cater to all skill levels, covering fundamental espresso skills, advanced techniques like latte art, sensory training, and machinery maintenance. Upon completing all 6 modules, you'll have the chance to demonstrate your knowledge through a short practical and written exam. Successfully passing will earn you the exclusive Ultimate Coffee Host pin badge—a distinguished symbol of your dedication to coffee excellence and your partnership with Ozone Coffee.
                         <br />
-                        <br />
-                        <br />
-                        Get in touch with us today to learn more about becoming an Ozone Wholesale Partner and unlocking this transformative learning experience!
 
+                        <div className='leading-10 text-3xl'>
+                            창업 교육, 팀원 교육
+                        </div>
+
+                        <br />
+                        창업을 준비하는 파트너사의 상황에 맞는 교육
+                        창업컨설팅, 커피 추출 교육
+                        팀원간의 센서리 칼리브레이션, 팀워크 교육
+                        팀원간의 커피 세팅 의사소통 지원, 팀워크 센서리 칼리브레이션 교육을 진행합니다.
 
                     </div>
                 </div>
@@ -85,25 +85,24 @@ const WholesaleBanner = () => {
     )
 }
 const page = () => {
+
     const links = [
         {
-            title: 'Flavours from Far and Wide',
-            description: 'We’re unapologetically obsessed with flavour and travel the world to find the most exciting coffees and offer boundless variety.',
+            title: 'FAABS DARK BLEND',
+            description: '땅콩, 호두 등 견과의 고소한 아로마와 다크 초콜릿의 단맛 ',
+            sub: '고소한 맛 원두 DARK ROAST',
             link: ''
         },
         {
-            title: "Transparent, Direct Relationships",
-            description: "We’ve built long-term relationships and source from world-class producers who are paving the way for more sustainable and ethical coffee.",
+            title: "MORGAN TOWN BLEND",
+            description: "아몬드의 고소함과 밀크초콜릿의 부드러움, 오렌지의 여운이 있는 원두",
+            sub: '고소한 맛, 약간의 산미 MEDIUM DARK ROAST',
             link: ''
         },
         {
-            title: 'Single Origins2',
-            description: 'Exceptional flavours sourced directly and sustainably from our long-term partners at origin.',
-            link: ''
-        },
-        {
-            title: "Subscriptions3",
-            description: "A sad day if you've run out! Super easy and flexible, we roast the good stuff - you pause or cancel whenever you fancy.",
+            title: 'HOMETOWN BLEND',
+            description: '복숭아 리치의 향미, 단맛과 부드러운 질감',
+            sub: '과일맛, 산미 원두 MEDIUM LIGHT ROAST',
             link: ''
         }
     ]
@@ -112,8 +111,16 @@ const page = () => {
     return (
         <main className='flex flex-col gap-32'>
             <Hero />
-            <div className='md:w-[600px] mx-[2rem] leading-8'>
-                Whether you’re a coffee shop, cafe, restaurant, hotel, office, or retailer, we offer everything you need to make the perfect cup, and then some. Our team is full of experts and highly trained baristas who love all things specialty coffee. We’re here to guide you with knowledge, training, great coffee experiences and more.
+            <div className='flex flex-col md:w-[50%] gap-16 mx-[2rem] leading-8'>
+                <div>
+                    에스프레소 원두 납품 블랜드 원두, 싱글 오리진, 디카페인 원두
+                    파브스 커피는 파트너사의 운영이 순조롭게 진행될 수 있는
+                    균일한 맛표현의 블랜드 커피와 싱글 오리진, 디카페인 커피를 에스프레소용 원두로 로스팅합니다.
+                </div>
+                <div>
+                    핸드드립용 싱글오리진 원두 납품
+                    다양한 국가와 지역 프로세싱의 싱글오리진 원두를 파트너사의 핸드드립 운영방침에 맞게 추천, 제공드립니다.
+                </div>
             </div>
             <WholesaleLink links={links} />
             <WholesaleBanner />

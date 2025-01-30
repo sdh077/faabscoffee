@@ -12,11 +12,12 @@ const Layout = async ({ children }: { children: ReactNode }) => {
             <div className="px-2 md:px-0 w-full text-3xl font-bold md:text-4xl">FAABS COFFEE</div>
           </Link>
           <div className="px-2 md:px-0  underline-black flex justify-start gap-4 text-sm sm:text-base">
-            {['learn', 'shop', 'wholesale'].map(menu =>
-              <Link href={`/${menu}`} key={menu}>
-                {menu.toLocaleUpperCase()}
-              </Link>
-            )}
+            <Link href={`/`}>
+              HOME
+            </Link>
+            <Link href={`/wholesale`}>
+              WHOLESALE
+            </Link>
           </div>
         </div>
       </div>

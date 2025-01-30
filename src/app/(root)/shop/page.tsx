@@ -10,6 +10,7 @@ const getCategory = async () => {
   return supabase
     .from('goods_category')
     .select('*')
+    .eq('use_yn', true)
     .returns<IGoodsCategory[]>()
 }
 

@@ -29,6 +29,8 @@ export default async function RootLayout({
   const session = await auth()
   return (
     <html lang="en">
+      <link rel="icon" href="/favicon.png" sizes="any" />
+
       <SessionProvider session={session}>
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
