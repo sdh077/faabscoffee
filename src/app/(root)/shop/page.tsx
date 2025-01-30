@@ -16,7 +16,6 @@ const getCategory = async () => {
 
 const getGoods = async (category: string) => {
   const supabase = await createClient()
-  console.log(category)
   return await supabase
     .from('goods')
     .select('*')
@@ -24,7 +23,7 @@ const getGoods = async (category: string) => {
     .returns<IGoods[]>()
 }
 
-export async function Page({
+async function page({
   searchParams,
 }: {
   searchParams: Promise<{ category: string }>
@@ -105,4 +104,4 @@ export async function Page({
   )
 }
 
-export default Page
+export default page
