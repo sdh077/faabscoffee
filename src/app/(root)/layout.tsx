@@ -9,7 +9,7 @@ const Layout = async ({ children }: { children: ReactNode }) => {
       <div className="top-0 z-50 w-full border-b-[1px] border-white bg-white fixed">
         <div className="md:container flex w-full flex-col justify-between gap-4">
           <Link href="/" className="underline-black">
-            <div className="px-2 md:px-0 w-full text-3xl font-bold md:text-4xl">FAABS COFFEE</div>
+            <div className="px-2 md:px-0 w-full text-2xl font-extrabold md:text-4xl">FAABS COFFEE</div>
           </Link>
           <div className="px-2 md:px-0  underline-black flex justify-start gap-4 text-sm sm:text-base">
             <Link href={`/`}>
