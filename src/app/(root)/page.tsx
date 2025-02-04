@@ -1,32 +1,28 @@
 
+import { ProductRow, ProductView } from '@/components/root/ProductView'
 import SectionTitle from '@/components/root/SectionTitle'
-import { Button } from '@/components/ui/button'
+import { ProductProp3 } from '@/interface/goods'
+import { createClient } from '@/lib/supabase/server'
 import Image from 'next/image'
-import Link from 'next/link'
 import React from 'react'
+const getGoods = async () => {
+  const supabase = await createClient()
+  return await supabase
+    .from('goods')
+    .select('*, goods_selection(*,goods_category_option(*))')
+    .eq('id', [25, 21, 33, 34])
+    .returns<ProductProp3[]>()
+}
+
+
 const MainSection = async () => {
   return (
     <div className='container w-full mx-auto mb-16'>
       <Image src={'/bgbg.png'} width={2400} height={800} alt='main' />
     </div>
-    // <section
-    //   className="relative h-[300px] md:h-[80vh] min-h-[460px] w-screen object-center bg-no-repeat"
-    //   style={{ backgroundImage: 'url("/bgbg.png")' }}
-    // >
-    //   <div className="absolute bottom-4 left-2 z-10 flex flex-col gap-16">
-    //     <div className="text-5xl md:text-8xl font-bold ">
-    //       <div>FAABS’</div>
-    //       <div>Philosophy</div>
-    //     </div>
-    //     <div className="text-2xl ">
-    //       생산자와 소비자를 연결하는 커피하는 사람들
-    //     </div>
-    //     <button className="w-64 rounded-none bg-black text-white">PREORDER</button>
-    //   </div>
-    // </section>
   )
 }
-const MainItem = ({ items }: {
+const MainItem = async ({ items }: {
   items: {
     title: string
     price: string
@@ -35,55 +31,19 @@ const MainItem = ({ items }: {
     link: string
   }[]
 }) => {
+  const { data: goods } = await getGoods()
   return (
     <section className="container py-6 ">
       <SectionTitle >
         FRESHEST ARRIVALS
       </SectionTitle>
-      <ul className="home-items grid grid-cols-1 gap-12 py-16 md:grid-cols-2 xl:grid-cols-4 ">
-        {items.map(item =>
-          <li className="home-item relative flex flex-col items-stretch justify-between gap-6 " key={item.image}>
-            <div className="mx-auto w-full ">
-              <Image
-                className=" w-full object-cover object-center "
-                loading="lazy"
-                alt="Bolivia: Brenda Palli"
-                width={1966}
-                height={1966.0}
-                src={item.image}
-              />
-            </div>
-            <div className="underline-black flex flex-col gap-6 ">
-              <div className="font-semibold ">
-                {item.title}
-              </div>
-              <div className="">{item.price}</div>
-            </div>
-            <div className="">
-              <div className="">
-                {item.roasting}
-              </div>
-            </div>
-            <div className="">
-              <Link href={item.link} className="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 px-4 py-2 w-full rounded-none bg-black text-white" target='_blank'>
-                스마트스토어
-                <svg
-                  className="icon-md tw-ml-auto "
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 30 30"
-                >
-                  <path
-                    d="m16.312 9.76-1.008.992 3.072 3.36H9.24v1.44h9.136l-3.072 3.36 1.008.992 4.592-5.072-4.592-5.072Z"
-                    fill="inherit"
-                    className=""
-                  />
-                </svg>
-              </Link>
-            </div>
-          </li>
-        )}
-      </ul>
+      <ProductView>
+        <>
+          {goods && goods.map(item =>
+            <ProductRow key={item.id} item={item} />
+          )}
+        </>
+      </ProductView>
     </section >
   )
 }
