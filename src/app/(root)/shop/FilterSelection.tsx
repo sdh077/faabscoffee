@@ -14,13 +14,13 @@ import {
 } from "@/components/ui/dropdown-menu"
 import Image from "next/image"
 import { useRouterPush } from "@/hooks/use-create-query-string"
-import { IGoodsCategory } from "@/interface/goods"
+import { ICategoryOption } from "@/interface/goods"
 import { useSearchParams } from "next/navigation"
 
 interface Props {
   title: string
   label: string
-  items: IGoodsCategory[]
+  items: ICategoryOption[]
 }
 
 export function FilterSelection({ title, label, items }: Props) {
