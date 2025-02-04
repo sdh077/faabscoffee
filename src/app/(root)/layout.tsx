@@ -18,6 +18,9 @@ const Layout = async ({ children }: { children: ReactNode }) => {
             <Link href={`/wholesale`}>
               WHOLESALE
             </Link>
+            <Link href={`/shop`}>
+              SHOP
+            </Link>
           </div>
         </div>
       </div>
