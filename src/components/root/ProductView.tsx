@@ -1,5 +1,6 @@
 import { ICategoryOption, IGoods, IProductOption, ProductProp3 } from '@/interface/goods'
 import Image from 'next/image'
+import Link from 'next/link'
 import React, { Fragment, ReactNode } from 'react'
 
 const ProductView = ({ children }: { children: ReactNode }) => {
@@ -42,15 +43,17 @@ const ProductRow = ({ item }: { item: ProductProp3 }) => {
         </div>
       </div>
       <div className="">
-        <button
-          type="button"
-          tabIndex={0}
-          className="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 px-4 py-2 w-full rounded-none bg-black text-white"
-          data-button-root=""
-        >
+        <Link href={item.content} target='_blank'>
+          <button
+            type="button"
+            tabIndex={0}
+            className="ring-offset-background focus-visible:ring-ring inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 px-4 py-2 w-full rounded-none bg-black text-white"
+            data-button-root=""
+          >
 
-          스마트스토어
-        </button>
+            스마트스토어
+          </button>
+        </Link>
       </div>
     </li>
   )
