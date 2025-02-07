@@ -10,7 +10,7 @@ const getGoods = async () => {
   return await supabase
     .from('goods')
     .select('*, goods_selection(*,goods_category_option(*))')
-    .eq('id', [25, 21, 33, 34])
+    .in('id', [21, 25, 33, 34])
     .returns<ProductProp3[]>()
 }
 
@@ -31,7 +31,7 @@ const MainItem = async ({ items }: {
     link: string
   }[]
 }) => {
-  const { data: goods } = await getGoods()
+  const { data: goods, error } = await getGoods()
   return (
     <section className="container py-6 ">
       <SectionTitle >
