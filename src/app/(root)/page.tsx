@@ -10,7 +10,7 @@ const getGoods = async () => {
   return await supabase
     .from('goods')
     .select('*, goods_selection(*,goods_category_option(*))')
-    .in('id', [21, 25, 33, 34])
+    .in('id', [31, 25, 33, 34])
     .returns<ProductProp3[]>()
 }
 
