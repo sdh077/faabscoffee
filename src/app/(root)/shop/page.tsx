@@ -20,7 +20,12 @@ const getCategory = async () => {
 
 
 const getGoods = async (category: string): Promise<ProductProp3[]> => {
-  return await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/goods?category=${category}`).then(res => res.json()).catch(() => [])
+  return await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/goods?category=${category}`)
+    .then(res => res.json())
+    .catch((e) => {
+      console.log(e)
+      return []
+    })
 }
 
 async function page({
