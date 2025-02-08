@@ -6,7 +6,7 @@ import { ProductProp3 } from '@/interface/goods'
 import Image from 'next/image'
 import React from 'react'
 const getGoods = async (): Promise<ProductProp3[]> => {
-  return await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/goods?ids=31,25,33,34`).then(res => res.json())
+  return await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/goods?ids=31,25,33,34`).then(res => res.json()).catch(() => [])
 }
 
 
