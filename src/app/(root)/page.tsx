@@ -121,10 +121,10 @@ const Page = () => {
   return (
     <main>
       <MainSection />
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div></div>}>
         <MainItem items={items} />
       </Suspense>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div></div>}>
         <MainLink links={links} />
       </Suspense>
     </main>
