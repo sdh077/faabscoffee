@@ -1,5 +1,6 @@
 
 import { ProductRow, ProductView } from '@/components/root/ProductView'
+import { Suspense } from 'react'
 import SectionTitle from '@/components/root/SectionTitle'
 import { ProductProp3 } from '@/interface/goods'
 import { createClient } from '@/lib/supabase/server'
@@ -31,7 +32,7 @@ const MainItem = async ({ items }: {
     link: string
   }[]
 }) => {
-  const { data: goods, error } = await getGoods()
+  const { data: goods } = await getGoods()
   return (
     <section className="container py-6 ">
       <SectionTitle >
@@ -120,8 +121,12 @@ const Page = () => {
   return (
     <main>
       <MainSection />
-      <MainItem items={items} />
-      <MainLink links={links} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <MainItem items={items} />
+      </Suspense>
+      <Suspense fallback={<div>Loading...</div>}>
+        <MainLink links={links} />
+      </Suspense>
     </main>
   )
 }
