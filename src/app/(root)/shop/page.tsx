@@ -9,13 +9,13 @@ import { Button } from '@/components/ui/button'
 import { CategoryButton } from './CategoryButton'
 import { ProductView, ProductRow } from '@/components/root/ProductView'
 
-const getCategory = async () => {
-  const supabase = await createClient()
-  return supabase
-    .from('goods_category')
-    .select('*')
-    .eq('use_yn', true)
-    .returns<IGoodsCategory[]>()
+const getCategory = async (): Promise<IGoodsCategory[]> => {
+  return await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/category`)
+    .then(res => res.json())
+    .catch((e) => {
+      console.log(e)
+      return []
+    })
 }
 
 
@@ -35,7 +35,7 @@ async function page({
 }) {
   const { category } = await searchParams
 
-  const { data: goodsCategory } = await getCategory()
+  const goodsCategory = await getCategory()
   const categoryNo = (category ?? '1') as string
   const goods = await getGoods(categoryNo)
   return (
