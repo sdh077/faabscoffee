@@ -3,16 +3,10 @@ import { ProductRow, ProductView } from '@/components/root/ProductView'
 import { Suspense } from 'react'
 import SectionTitle from '@/components/root/SectionTitle'
 import { ProductProp3 } from '@/interface/goods'
-import { createClient } from '@/lib/supabase/server'
 import Image from 'next/image'
 import React from 'react'
-const getGoods = async () => {
-  const supabase = await createClient()
-  return await supabase
-    .from('goods')
-    .select('*, goods_selection(*,goods_category_option(*))')
-    .in('id', [31, 25, 33, 34])
-    .returns<ProductProp3[]>()
+const getGoods = async (): Promise<ProductProp3[]> => {
+  return await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/goods?ids=31,25,33,34`).then(res => res.json())
 }
 
 
@@ -32,7 +26,7 @@ const MainItem = async ({ items }: {
     link: string
   }[]
 }) => {
-  const { data: goods } = await getGoods()
+  const goods = await getGoods()
   return (
     <section className="container py-6 ">
       <SectionTitle >

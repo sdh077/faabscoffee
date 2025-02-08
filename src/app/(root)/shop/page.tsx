@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import SectionTitle from '@/components/root/SectionTitle'
 import { createClient } from '@/lib/supabase/server'
 import Image from 'next/image'
@@ -18,13 +19,8 @@ const getCategory = async () => {
 }
 
 
-const getGoods = async (category: string) => {
-  const supabase = await createClient()
-  return await supabase
-    .from('goods')
-    .select('*, goods_selection(*,goods_category_option(*))')
-    .eq('category_id', category)
-    .returns<ProductProp3[]>()
+const getGoods = async (category: string): Promise<ProductProp3[]> => {
+  return await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/goods?category=${category}`).then(res => res.json())
 }
 
 async function page({
@@ -36,25 +32,26 @@ async function page({
 
   const { data: goodsCategory } = await getCategory()
   const categoryNo = (category ?? '1') as string
-  const { data: goods } = await getGoods(categoryNo)
-  if (!goodsCategory) return <></>
+  const goods = await getGoods(categoryNo)
   return (
     <section className="container py-6 flex flex-col gap-4 ">
       <SectionTitle>
         FRESHEST ARRIVALS
       </SectionTitle>
-      <div className='flex gap-8'>
-        {goodsCategory.map(category =>
-          <CategoryButton key={category.id} category={category}></CategoryButton>
-        )}
-      </div>
-      <ProductView>
-        <>
-          {goods && goods.map(item =>
-            <ProductRow key={item.id} item={item} />
+      <Suspense fallback={<div></div>}>
+        <div className='flex gap-8'>
+          {goodsCategory && goodsCategory.map(category =>
+            <CategoryButton key={category.id} category={category}></CategoryButton>
           )}
-        </>
-      </ProductView>
+        </div>
+        <ProductView>
+          <>
+            {goods && goods.map(item =>
+              <ProductRow key={item.id} item={item} />
+            )}
+          </>
+        </ProductView>
+      </Suspense>
     </section >
   )
 }
