@@ -85,9 +85,9 @@ const page = () => {
     },
   ]
   return (
-    <main className='flex flex-col gap-32'>
-      {/* <Hero /> */}
-      <MainLink links={items} />
+    <main className='flex flex-col gap-8 container my-16'>
+      <div className='text-5xl'>공학적 접근의 로스팅</div>
+      <div>공동대표이자 헤드 로스터인 이준선 대표는 전공한 공학적 이해를 바탕으로 로스팅을 연구하고 로스팅 결과물을 균일하게 도출하도록 파브스 로스터리를 이끌고 있습니다. 파브스 커피가 추구하는 클린컵, 질감의 표현을 다각도로 연구하며 커피를 로스팅하고 있습니다.</div>
       <Docs />
     </main>
   )

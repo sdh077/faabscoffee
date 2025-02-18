@@ -4,12 +4,12 @@ import { createClient } from '@/lib/supabase/server'
 import Image from 'next/image'
 import React, { Fragment } from 'react'
 import { FilterSelection } from './FilterSelection'
-import { ICategoryOption, IGoods, IGoodsCategory, IProductOption, ProductProp3 } from '@/interface/goods'
 import { Button } from '@/components/ui/button'
 import { CategoryButton } from './CategoryButton'
 import { ProductView, ProductRow } from '@/components/root/ProductView'
+import { ICategory, ProductProp3 } from '@/interface/product'
 
-const getCategory = async (): Promise<IGoodsCategory[]> => {
+const getCategory = async (): Promise<ICategory[]> => {
   return await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/category`)
     .then(res => res.json())
     .catch((e) => {
@@ -19,8 +19,8 @@ const getCategory = async (): Promise<IGoodsCategory[]> => {
 }
 
 
-const getGoods = async (category: string): Promise<ProductProp3[]> => {
-  return await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/goods?category=${category}`)
+const getProducts = async (category: string): Promise<ProductProp3[]> => {
+  return await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/product?category=${category}`)
     .then(res => res.json())
     .catch((e) => {
       console.log(e)
@@ -35,9 +35,9 @@ async function page({
 }) {
   const { category } = await searchParams
 
-  const goodsCategory = await getCategory()
+  const categories = await getCategory()
   const categoryNo = (category ?? '1') as string
-  const goods = await getGoods(categoryNo)
+  const products = await getProducts(categoryNo)
   return (
     <section className="container py-6 flex flex-col gap-4 ">
       <SectionTitle>
@@ -45,13 +45,13 @@ async function page({
       </SectionTitle>
       <Suspense fallback={<div></div>}>
         <div className='flex gap-8'>
-          {goodsCategory && goodsCategory.map(category =>
+          {categories && categories.map(category =>
             <CategoryButton key={category.id} category={category}></CategoryButton>
           )}
         </div>
         <ProductView>
           <>
-            {goods && goods.map(item =>
+            {products && products.map(item =>
               <ProductRow key={item.id} item={item} />
             )}
           </>

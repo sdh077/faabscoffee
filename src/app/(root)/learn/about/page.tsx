@@ -85,10 +85,10 @@ const page = () => {
     },
   ]
   return (
-    <main className='flex flex-col gap-32'>
-      {/* <Hero /> */}
-      <MainLink links={items} />
-      <Docs />
+    <main className='flex flex-col gap-8 container my-16'>
+      <div className='text-5xl'>파브스 커피의 마스코트 파파빈은 커피에 인격을 부여한 캐릭터입니다.</div>
+      <div>커피는 살아있는 유기물이며 매 해 농작물로 재배됩니다. 우리는 커피가 가진 다양한 얼굴을 표현합니다. 생산국, 지역, 커피 프로세싱, 품종의 다양성을 표현하는 로스팅을 추구합니다.</div>
+      <Hero />
     </main>
   )
 }

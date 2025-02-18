@@ -23,6 +23,9 @@ export async function createClient() {
             // user sessions.
           }
         },
+      },
+      db: {
+        schema: 'business'
       }
     }
   )

@@ -2,19 +2,27 @@
 import { ProductRow, ProductView } from '@/components/root/ProductView'
 import { Suspense } from 'react'
 import SectionTitle from '@/components/root/SectionTitle'
-import { ProductProp3 } from '@/interface/goods'
+import { ProductProp3 } from '@/interface/product'
 import Image from 'next/image'
 import React from 'react'
-const getGoods = async (): Promise<ProductProp3[]> => {
-  return await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/goods?ids=31,25,33,34`).then(res => res.json()).catch(() => [])
+const getProduct = async (): Promise<ProductProp3[]> => {
+  return await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/product?ids=1,3,4,5`).then(res => res.json())
+    .catch((e) => {
+      console.log(e)
+      return []
+    })
 }
-
 
 const MainSection = async () => {
   return (
-    <div className='container w-full mx-auto mb-16'>
-      <Image src={'/bgbg.png'} width={2400} height={800} alt='main' />
+    <div className=' h-[300px] md:h-[80vh] bg-cover relative' style={{
+      backgroundImage: "url('/wholesale.png')"
+    }}>
     </div>
+    // <div className='container w-full mx-auto mb-16'>
+    //   <Image src={'/wholesale.png'} width={2400} height={800} alt='main' />
+    //   {/* <Image src={'/bgbg.png'} width={2400} height={800} alt='main' /> */}
+    // </div>
   )
 }
 const MainItem = async ({ items }: {
@@ -26,7 +34,7 @@ const MainItem = async ({ items }: {
     link: string
   }[]
 }) => {
-  const goods = await getGoods()
+  const products = await getProduct()
   return (
     <section className="container py-6 ">
       <SectionTitle >
@@ -34,7 +42,7 @@ const MainItem = async ({ items }: {
       </SectionTitle>
       <ProductView>
         <>
-          {goods && goods.map(item =>
+          {products && products.map(item =>
             <ProductRow key={item.id} item={item} />
           )}
         </>

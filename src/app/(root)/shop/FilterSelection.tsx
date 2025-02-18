@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import Image from "next/image"
 import { useRouterPush } from "@/hooks/use-create-query-string"
-import { ICategoryOption } from "@/interface/goods"
+import { ICategoryOption } from "@/interface/product"
 import { useSearchParams } from "next/navigation"
 
 interface Props {

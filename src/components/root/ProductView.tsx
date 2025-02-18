@@ -1,4 +1,4 @@
-import { ICategoryOption, IGoods, IProductOption, ProductProp3 } from '@/interface/goods'
+import { ProductProp3 } from '@/interface/product'
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { Fragment, ReactNode } from 'react'
@@ -20,7 +20,7 @@ const ProductRow = ({ item }: { item: ProductProp3 }) => {
           loading="lazy"
           alt="Bolivia: Brenda Palli"
           fill
-          src={item.img}
+          src={item.image}
         />
       </div>
       <div className="underline-black flex flex-col gap-6 min-h-20">
@@ -32,18 +32,16 @@ const ProductRow = ({ item }: { item: ProductProp3 }) => {
       <div className='min-h-16'>
         {item.description}
       </div>
-      <div className="min-h-16">
-        <div className="grid grid-cols-2 ">
-          {item.goods_selection.map(selection =>
-            <Fragment key={selection.id}>
-              <div className="">{selection.goods_category_option.title}</div>
-              <div className="">{selection.text}</div>
-            </Fragment>
-          )}
-        </div>
+      <div className="min-h-16 flex flex-col gap-2">
+        {item.product_option.map(selection =>
+          <div className="flex justify-between " key={selection.id}>
+            <div className="w-20">{selection.category_option.title}</div>
+            <div className="">{selection.content}</div>
+          </div>
+        )}
       </div>
       <div className="">
-        <Link href={item.content} target='_blank'>
+        <Link href={item.content ?? '/'} target='_blank'>
           <button
             type="button"
             tabIndex={0}

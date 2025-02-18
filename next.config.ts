@@ -34,6 +34,10 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'faabscafe.vercel.app'
+      },
+      {
+        protocol: 'https',
+        hostname: 'smartstore.naver.com'
       }
     ],
   },
