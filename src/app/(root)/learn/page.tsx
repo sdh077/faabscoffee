@@ -21,10 +21,7 @@ const Hero = () => {
 }
 const MainLink = ({ links }: { links: { title: string, description: string, link?: string }[] }) => {
   return (
-    <section className="container pt-6 ">
-      <SectionTitle>
-        커피의 다양한 얼굴을 표현하다.
-      </SectionTitle>
+    <section className="pt-6 ">
       <ul className="home-items grid grid-cols-1 gap-12 pt-16 md:grid-cols-2 xl:grid-cols-3 ">
         {links.map(link =>
           <li className="home-item relative flex flex-col gap-6 w-full" key={link.title}>
@@ -56,7 +53,7 @@ const MainLink = ({ links }: { links: { title: string, description: string, link
 }
 const Docs = () => {
   return (
-    <div className='flex flex-col gap-8 container my-16'>
+    <div className='flex flex-col gap-8 my-16'>
       <SectionTitle>ARCHIVE</SectionTitle>
       {[1].map(i =>
         <div className='flex justify-between' key={i}>
@@ -85,7 +82,8 @@ const page = () => {
     },
   ]
   return (
-    <main className='flex flex-col gap-32'>
+    <main className='flex flex-col gap-8 container my-16'>
+      <div className='text-5xl'>커피의 다양한 얼굴을 표현하다.</div>
       {/* <Hero /> */}
       <MainLink links={items} />
       <Docs />
