@@ -34,10 +34,10 @@ const Layout = async ({ children }: { children: ReactNode }) => {
             </Link>
             <DropdownMenu>
               <DropdownMenuTrigger>LEARN</DropdownMenuTrigger>
-              <DropdownMenuContent className='font-normal'>
-                <DropdownMenuLabel><Link href={`/learn`}>커피의 다양한 얼굴을 표현하다.</Link></DropdownMenuLabel>
-                <DropdownMenuLabel><Link href={`/learn/archive`}>공학적 접근의 로스팅</Link></DropdownMenuLabel>
-                <DropdownMenuLabel><Link href={`/learn/about`}>파파빈</Link></DropdownMenuLabel>
+              <DropdownMenuContent>
+                <DropdownMenuLabel className='font-normal'><Link href={`/learn`}>커피의 다양한 얼굴을 표현하다.</Link></DropdownMenuLabel>
+                <DropdownMenuLabel className='font-normal'><Link href={`/learn/archive`}>공학적 접근의 로스팅</Link></DropdownMenuLabel>
+                <DropdownMenuLabel className='font-normal'><Link href={`/learn/about`}>파파빈</Link></DropdownMenuLabel>
               </DropdownMenuContent>
             </DropdownMenu>
 
