@@ -24,7 +24,7 @@ const page = () => {
       `
   }
   return (
-    <div className='container flex flex-col gap-8'>
+    <div className='container flex flex-col gap-8 my-8'>
       <div className='text-5xl font-semibold font-bebas-neue'>{docs.title}</div>
       <div className='text-md font-bebas-neue'>
         {docs.writer}

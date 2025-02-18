@@ -58,7 +58,7 @@ const Docs = () => {
   return (
     <div className='flex flex-col gap-8 container my-16'>
       <SectionTitle>ARCHIVE</SectionTitle>
-      {[1, 2, 3, 4, 5, 6, 7, 8].map(i =>
+      {[1].map(i =>
         <div className='flex justify-between' key={i}>
           <div className='text-2xl'>원가 및 마진율 계산</div>
           <div className='flex items-center'>
