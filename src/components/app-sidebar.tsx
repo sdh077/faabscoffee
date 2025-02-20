@@ -1,3 +1,4 @@
+'use client'
 import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
 
 import {
@@ -10,6 +11,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
+import useFetchUser from "@/hooks/use-fetch-user"
 
 // Menu items.
 const items = [
@@ -24,18 +26,11 @@ const items = [
   {
     title: "주문 기록",
     url: "/auth/mypage/record",
-  },
-  {
-    title: "Search",
-    url: "#",
-  },
-  {
-    title: "Settings",
-    url: "#",
-  },
+  }
 ]
 
 export function AppSidebar() {
+  const { signOut } = useFetchUser()
   return (
     <Sidebar>
       <SidebarContent>
@@ -52,6 +47,13 @@ export function AppSidebar() {
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
+            </SidebarMenu>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton asChild>
+                  <div className="cursor-pointer" onClick={signOut}>Log out</div>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

@@ -12,7 +12,8 @@ export async function orderCustom(status: string, name: string, price: number, p
     products,
     user_id,
     invoice: null,
-    delivery: null
+    delivery: null,
+    start_date: ''
   }
   const supabase = await createClient()
   const { data, error } = await supabase.from('custom_order')

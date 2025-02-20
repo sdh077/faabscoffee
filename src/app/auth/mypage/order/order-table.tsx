@@ -22,6 +22,8 @@ import React, { useState } from 'react'
 import { orderCustom } from "./actions"
 import { createClient } from "@/lib/supabase/client"
 import SectionTitle from "@/components/root/SectionTitle"
+import { Input } from "@/components/ui/input"
+import ShipmentDatePicker from "./shipment-date"
 
 
 const OrderTable = ({ products }: { products: Sale[] }) => {
@@ -35,6 +37,8 @@ const OrderTable = ({ products }: { products: Sale[] }) => {
     setItems(items.map(item => item.product.id === id ? { ...item, count: item.count + oper } : item))
   }
   const [open, onOpenChange] = useState(false)
+
+  const [date, setDate] = useState<Date | null>(null)
   const handleOrder = async () => {
     if (totalPrice === 0) return
     const supabase = createClient()
@@ -47,7 +51,8 @@ const OrderTable = ({ products }: { products: Sale[] }) => {
       products: items,
       user_id: user.user?.id!,
       invoice: null,
-      delivery: null
+      delivery: null,
+      start_date: date?.toISOString() ?? ''
     }
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/order`, {
       method: 'POST',
@@ -57,6 +62,7 @@ const OrderTable = ({ products }: { products: Sale[] }) => {
       onOpenChange(false)
     }).catch(error => console.log(error))
   }
+
   return (
     <div className='w-full h-[90vh] flex flex-col justify-between'>
       <div className="">
@@ -68,9 +74,12 @@ const OrderTable = ({ products }: { products: Sale[] }) => {
                 <div>
                   <div>Total {totalPrice}원</div>
                 </div>
+                <div>
+                  <ShipmentDatePicker date={date} setDate={setDate} />
+                </div>
                 <Dialog open={open} onOpenChange={onOpenChange}>
                   <DialogTrigger asChild><Button>주문하기</Button></DialogTrigger>
-                  <DialogContent>
+                  <DialogContent className="w-80">
                     <DialogHeader>
                       <DialogTitle>Are you absolutely sure?</DialogTitle>
                       <DialogDescription>

@@ -20,6 +20,9 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import SectionTitle from "@/components/root/SectionTitle"
+import ExcelToPDFConverter from "./excel"
+import Estimate from "./excel"
+import { DeliveryModal, EstimateModal } from "./modal"
 
 export default async function Page() {
   const { data: invoices } = await getOrders()
@@ -33,8 +36,8 @@ export default async function Page() {
             <TableHead>상태</TableHead>
             <TableHead>금액</TableHead>
             <TableHead>송장번호</TableHead>
-            <TableHead>배송사</TableHead>
             <TableHead>택배 위치 확인</TableHead>
+            <TableHead>견적서</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -44,14 +47,15 @@ export default async function Page() {
               <TableCell className="font-medium">{invoice.status}</TableCell>
               <TableCell>{invoice.price}</TableCell>
               <TableCell>{invoice.invoice ?? ''}</TableCell>
-              <TableCell>{invoice.delivery ?? ''}</TableCell>
-              <TableCell></TableCell>
+              <TableCell><DeliveryModal invoice={invoice.invoice} /></TableCell>
+              <TableCell><EstimateModal /></TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
-      <iframe src='https://trace.cjlogistics.com/next/tracking.html?wblNo=689942415361' width={900} height={1000}>
-      </iframe>
+      <div className="grid grid-cols-2">
+
+      </div>
     </div>
   )
 }

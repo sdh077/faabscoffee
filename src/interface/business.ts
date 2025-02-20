@@ -17,5 +17,6 @@ export interface Order {
   user_id: string;
   invoice: string | null;
   delivery: string | null;
+  start_date: string
 }
 export type Cart = { count: number, price: number, product: Sale }
