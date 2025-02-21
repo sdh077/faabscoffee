@@ -1,7 +1,7 @@
 import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 
-export async function createClient() {
+export async function createClient(schema: string = 'business') {
   const cookieStore = await cookies()
 
   return createServerClient(
@@ -25,7 +25,7 @@ export async function createClient() {
         },
       },
       db: {
-        schema: 'business'
+        schema
       }
     }
   )

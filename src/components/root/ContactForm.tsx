@@ -17,6 +17,7 @@ import { z } from "zod"
 import { useForm } from "react-hook-form"
 import { usePathname, useRouter } from "next/navigation"
 import { Checkbox } from "@/components/ui/checkbox"
+import { toast } from "@/hooks/use-toast"
 
 const FormSchema = z.object({
   name: z.string().min(1, {
@@ -72,8 +73,13 @@ const ContactForm = ({ purpose }: { purpose: string }) => {
       }
 
       const res = await response.json();
+      console.log('first', res)
       if (res.data) {
-        router.push(`${pathname}/confirm`)
+        toast({
+          title: "신청이 완료되었습니다",
+          description: "검토 후 연락드리겠습니다."
+        })
+        router.refresh()
       }
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -180,51 +186,7 @@ const ContactForm = ({ purpose }: { purpose: string }) => {
               </FormItem>
             )}
           />
-          {purpose === 'sample' && <FormField
-            control={form.control}
-            name="bean"
-            render={() => (
-              <FormItem>
-                <div className="mb-4">
-                  <FormLabel className="text-base">희망 원두 선택</FormLabel>
-                </div>
-                {items.map((item) => (
-                  <FormField
-                    key={item.id}
-                    control={form.control}
-                    name="bean"
-                    render={({ field }) => {
-                      return (
-                        <FormItem
-                          key={item.id}
-                          className="flex flex-row items-start space-x-3 space-y-0"
-                        >
-                          <FormControl>
-                            <Checkbox
-                              checked={field.value?.includes(item.id)}
-                              onCheckedChange={(checked) => {
-                                return checked
-                                  ? field.onChange([...field.value, item.id])
-                                  : field.onChange(
-                                    field.value?.filter(
-                                      (value) => value !== item.id
-                                    )
-                                  )
-                              }}
-                            />
-                          </FormControl>
-                          <FormLabel className="text-sm font-normal">
-                            {item.label}
-                          </FormLabel>
-                        </FormItem>
-                      )
-                    }}
-                  />
-                ))}
-                <FormMessage />
-              </FormItem>
-            )}
-          />}
+
           <FormField
             control={form.control}
             name="description"
