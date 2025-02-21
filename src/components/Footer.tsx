@@ -3,8 +3,8 @@ import Link from 'next/link'
 
 const Footer = () => {
   return (
-    <footer id="site-footer" className="w-full bg-black text-white container py-8">
-      <div className='flex flex-col gap-8'>
+    <footer id="site-footer" className="w-full bg-black text-white py-8">
+      <div className='flex flex-col gap-8 container'>
         <div className='flex justify-between'>
           <p>Copyright © 2025, FAABS Coffee</p>
           <p>

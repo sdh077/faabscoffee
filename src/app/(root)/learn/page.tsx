@@ -60,7 +60,7 @@ const Docs = () => {
           <div className='text-2xl'>원가 및 마진율 계산</div>
           <div className='flex items-center'>
             이준선
-            <Link href={`/learn/${i}`} >
+            <Link href={`/learn/archive/${i}`} >
               <BiRightArrow />
             </Link>
           </div>
