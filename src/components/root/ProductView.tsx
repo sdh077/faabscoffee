@@ -32,14 +32,14 @@ const ProductRow = ({ item }: { item: ProductProp3 }) => {
       <div className='min-h-16'>
         {item.description}
       </div>
-      <div className="min-h-16 flex flex-col gap-2">
+      {/* <div className="min-h-16 flex flex-col gap-2">
         {item.product_option.map(selection =>
           <div className="flex justify-between " key={selection.id}>
             <div className="w-20">{selection.category_option.title}</div>
             <div className="">{selection.content}</div>
           </div>
         )}
-      </div>
+      </div> */}
       <div className="">
         <Link href={item.content ?? '/'} target='_blank'>
           <button
