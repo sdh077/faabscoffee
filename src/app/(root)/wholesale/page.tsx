@@ -7,7 +7,7 @@ import React from 'react'
 
 const Hero = () => {
     return (
-        <section className=' h-[300px] md:h-[80vh] bg-cover relative' style={{
+        <section className=' h-[300px] md:h-[80vh] bg-cover relative overflow-x-hidden' style={{
         }}>
             <div className='container '>
                 <div className='absolute bottom-24 flex flex-col gap-36 w-full'>
