@@ -10,6 +10,8 @@ export interface Sale {
 }
 
 export interface Order {
+  id: number
+  created_at: string
   status: string;
   name: string
   price: number;
@@ -19,4 +21,11 @@ export interface Order {
   delivery: string | null;
   start_date: string
 }
+export interface Custom {
+  id: number;
+  name: string;
+  address: string;
+  rank: number
+}
 export type Cart = { count: number, price: number, product: Sale }
+export type OrderCustom = Order & { custom: Custom }

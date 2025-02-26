@@ -5,7 +5,7 @@ import { createClient } from "@/lib/supabase/server"
 
 
 export async function orderCustom(status: string, name: string, price: number, products: Cart[], user_id: string) {
-  const order: Order = {
+  const order = {
     status,
     name,
     price,

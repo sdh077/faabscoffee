@@ -24,15 +24,14 @@ import {
 } from "@/components/ui/drawer"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Cart, OrderCustom } from "@/interface/business"
 
-export function EstimateModal({ invoice }: { invoice: OrderCustom }) {
+export function EstimateModal() {
   const [open, setOpen] = React.useState(false)
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline">확인하기</Button>
+        <Button variant="outline">견적서</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[800px] h-[80vh] overflow-y-auto">
         <DialogHeader>
@@ -40,16 +39,34 @@ export function EstimateModal({ invoice }: { invoice: OrderCustom }) {
           <DialogDescription>
           </DialogDescription>
         </DialogHeader>
-        <Quotation invoice={invoice} />
+        <Quotation />
       </DialogContent>
     </Dialog>
   )
 }
+export function DeliveryModal({ invoice }: { invoice: string | null }) {
+  const [open, setOpen] = React.useState(false)
 
+  return (
+    <Dialog open={open} onOpenChange={setOpen}>
+      <DialogTrigger asChild>
+        <Button variant="outline" disabled={!invoice}>배송추적</Button>
+      </DialogTrigger>
+      <DialogContent className="w-[1000px]">
+        <DialogHeader>
+          <DialogTitle></DialogTitle>
+          <DialogDescription>
+            <iframe src={`https://trace.cjlogistics.com/next/tracking.html?wblNo=${invoice}`} width={900} height={500}>
+            </iframe>
+          </DialogDescription>
+        </DialogHeader>
+      </DialogContent>
+    </Dialog>
+  )
 
-const Quotation = ({ invoice }: { invoice: OrderCustom }) => {
-  const 부가세 = Number((invoice.price * 10 / 110).toFixed(0))
-  const 상품금액 = invoice.price - 부가세
+}
+
+const Quotation = () => {
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-lg border">
       <div className="text-right text-sm mb-2">25. 2. 7. 오후 2:46</div>
@@ -62,7 +79,7 @@ const Quotation = ({ invoice }: { invoice: OrderCustom }) => {
       </div>
 
       <div className="border p-4 mb-4 grid grid-cols-2 gap-4">
-        <p><strong>상호:</strong> 파브스커피</p>
+        <p><strong>상호:</strong> 타바론 코리아(주)</p>
         <p><strong>사업자번호:</strong> 106-87-23065</p>
         <p><strong>대표자:</strong> 박영준</p>
         <p><strong>주소:</strong> 서울특별시 강남구 학동로 562 47층</p>
@@ -83,24 +100,38 @@ const Quotation = ({ invoice }: { invoice: OrderCustom }) => {
           </tr>
         </thead>
         <tbody>
-          {invoice.products.map((product, index) =>
-            <tr key={product.product.id}>
-              <td className="border p-2 text-center">{product.product.id}</td>
-              <td className="border p-2">{product.product.product.name}</td>
-              <td className="border p-2 text-center">-</td>
-              <td className="border p-2 text-center">{product.count}</td>
-              <td className="border p-2 text-right">{product.price ? product.price : product.product.price}</td>
-              <td className="border p-2 text-right">{product.price * product.count}</td>
-            </tr>
-          )}
+          <tr>
+            <td className="border p-2 text-center">1</td>
+            <td className="border p-2">[사업자 전용] 크림슨 펀치 300g (+45000)</td>
+            <td className="border p-2 text-center">-</td>
+            <td className="border p-2 text-center">2</td>
+            <td className="border p-2 text-right">13,300</td>
+            <td className="border p-2 text-right">24,182</td>
+          </tr>
+          <tr>
+            <td className="border p-2 text-center">2</td>
+            <td className="border p-2">[사업자 전용] 얼 그레이 리저브 50티백 (+17200)</td>
+            <td className="border p-2 text-center">-</td>
+            <td className="border p-2 text-center">2</td>
+            <td className="border p-2 text-right">45,000</td>
+            <td className="border p-2 text-right">81,819</td>
+          </tr>
+          <tr>
+            <td className="border p-2 text-center">3</td>
+            <td className="border p-2">얼 그레이 리저브 벌크</td>
+            <td className="border p-2 text-center">-</td>
+            <td className="border p-2 text-center">1</td>
+            <td className="border p-2 text-right">17,200</td>
+            <td className="border p-2 text-right">15,637</td>
+          </tr>
         </tbody>
       </table>
 
       <div className="border p-4 mt-4 text-right text-sm">
-        <p><strong>상품금액:</strong> {상품금액}원</p>
-        <p><strong>부가세:</strong> {부가세}원</p>
+        <p><strong>상품금액:</strong> 135,002원</p>
+        <p><strong>부가세:</strong> 13,498원</p>
         <p><strong>배송비:</strong> 0원</p>
-        <p className="font-bold text-lg">합계: {invoice.price}원</p>
+        <p className="font-bold text-lg">합계: 148,500원</p>
       </div>
 
       <div className="border p-4 mt-4">

@@ -12,6 +12,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 import useFetchUser from "@/hooks/use-fetch-user"
+import { createClient } from "@/lib/supabase/client"
 
 // Menu items.
 const items = [
@@ -26,6 +27,18 @@ const items = [
   {
     title: "주문 기록",
     url: "/auth/mypage/record",
+  },
+  {
+    title: "배송 확인",
+    url: "/auth/mypage/confirm",
+  },
+  {
+    title: "결제",
+    url: "/auth/mypage/pay",
+  },
+  {
+    title: '비밀번호 변경',
+    url: '/auth/mypage/change-password'
   }
 ]
 

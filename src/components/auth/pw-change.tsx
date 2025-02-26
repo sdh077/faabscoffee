@@ -14,18 +14,18 @@ import {
 import { z } from "zod"
 import { useForm } from "react-hook-form"
 import { createClient } from "@/lib/supabase/client";
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { toast } from "@/hooks/use-toast";
 
-export function SigninForm() {
-  const supabase = createClient()
+export function PwChage() {
+  const router = useRouter()
   const FormSchema = z.object({
-    email: z.string().min(2, {
-      message: "email must be at least 2 characters.",
-    }).email(),
-    password: z.string().min(2, {
+    newPassword: z.string().min(2, {
+      message: "password must be at least 2 characters.",
+    }),
+    newPasswordConfirm: z.string().min(2, {
       message: "password must be at least 2 characters.",
     }),
 
@@ -34,16 +34,28 @@ export function SigninForm() {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      email: "",
-      password: "",
+      newPassword: "",
+      newPasswordConfirm: "",
     },
   })
   async function onSubmit(data: z.infer<typeof FormSchema>) {
-    const { error } = await supabase.auth.signInWithPassword(data)
-    if (!error) redirect('/auth/mypage')
-    else toast({
-      title: '로그인에 실패했습니다.'
-    })
+    if (data.newPassword !== data.newPasswordConfirm) {
+      toast({
+        title: '비밀번호 변경 실패',
+        description: '비밀번호가 다릅니다.'
+      })
+      return
+    }
+    const supabase = createClient()
+    const res = await supabase.auth.updateUser({ password: data.newPassword })
+    if (!res.error) {
+      router.push('/auth/mypage')
+    } else {
+      toast({
+        title: '비밀번호 변경 실패',
+        description: res.error?.message
+      })
+    }
   };
   useEffect(() => {
     // supabase.auth.getUser()
@@ -62,12 +74,12 @@ export function SigninForm() {
         <form className="my-8" onSubmit={form.handleSubmit(onSubmit)}>
           <FormField
             control={form.control}
-            name="email"
+            name="newPassword"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel>새로운 비밀번호</FormLabel>
                 <FormControl>
-                  <Input placeholder="이메일을 입력해주세요" {...field} />
+                  <Input type="password" placeholder="새로운 비밀번호을 입력해주세요" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -75,12 +87,12 @@ export function SigninForm() {
           />
           <FormField
             control={form.control}
-            name="password"
+            name="newPasswordConfirm"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>비밀번호</FormLabel>
+                <FormLabel>새로운 비밀번호 확인</FormLabel>
                 <FormControl>
-                  <Input type="password" placeholder="비밀번호을 입력해주세요" {...field} />
+                  <Input type="password" placeholder="한번 더 입력해주세요" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -90,7 +102,7 @@ export function SigninForm() {
             className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset] mt-8"
             type="submit"
           >
-            Log In &rarr;
+            비밀번호 변경 &rarr;
             <BottomGradient />
           </button>
 

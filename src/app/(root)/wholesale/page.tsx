@@ -1,8 +1,8 @@
 import ContactForm from '@/components/root/ContactForm'
 import SectionTitle from '@/components/root/SectionTitle'
 import { Button } from '@/components/ui/button'
-import { Link } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 const Hero = () => {
@@ -12,11 +12,14 @@ const Hero = () => {
             <div className='container '>
                 <div className='absolute bottom-24 flex flex-col gap-36 w-full'>
                     <div className=' text-3xl md:text-[120px]'>Wholesale</div>
-                    <div className='text-2xl'>
-                        전세계의 다양한 커피 생산자와 소비자를 연결하는 <br /> 파브스커피의 파트너가 되어주세요.
+                    <div className='flex justify-between w-[50%]'>
+                        <div className='text-2xl'>
+                            전세계의 다양한 커피 생산자와 소비자를 연결하는 <br /> 파브스커피의 파트너가 되어주세요.
+                        </div>
+                        {/* <Link href={'/auth/signin'}><Button>파트너사 로그인</Button></Link> */}
                     </div>
                 </div>
-                <div className='right-24 top-[30%] absolute w-96 h-32'>
+                <div className='right-2 md:right-24 top-[30%] absolute w-32 h-32 md:w-96 md:h-32'>
                     <Image src='/beans2.png' width={1000} height={700} alt='beans' />
                 </div>
             </div>
@@ -127,7 +130,7 @@ const page = () => {
     return (
         <main className='flex flex-col gap-32 '>
             <Hero />
-            <div className='container'>
+            <div className=''>
 
                 <div className='flex flex-col md:w-[50%] gap-16 mx-[2rem] leading-8'>
                     <div>

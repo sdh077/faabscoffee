@@ -44,7 +44,7 @@ const OrderTable = ({ products }: { products: Sale[] }) => {
     const supabase = createClient()
     const { data: user } = await supabase.auth.getUser()
 
-    const order: Order = {
+    const order = {
       status: '주문확인',
       name: '',
       price: totalPrice,
