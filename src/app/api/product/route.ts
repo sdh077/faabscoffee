@@ -10,11 +10,11 @@ export async function GET(request: NextRequest) {
   let q = supabase
     .from('product')
     .select('*, product_option(*,category_option(*))')
+    .eq('is_delete', false)
 
   if (ids) q = q.in('id', ids.split(','))
   if (category) q = q.eq('category_id', category)
   const { data, error } = await q
-    .eq('is_delete', false)
     .order('id', { ascending: false })
     .returns<ProductProp3[]>()
   return Response.json(data)
