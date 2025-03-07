@@ -36,7 +36,7 @@ const WholesaleLink = ({ links }: { links: { title: string, description: string,
                 {links.map(link =>
                     <li className="home-item relative flex flex-col gap-6 w-full" key={link.title}>
                         <div className="flex flex-col gap-6 w-full">
-                            <div className="font-semibold text-2xl">
+                            <div className="font-medium text-xl">
                                 {link.title}
                             </div>
                         </div>
@@ -54,13 +54,13 @@ const WholesaleLink = ({ links }: { links: { title: string, description: string,
 }
 const WholesaleBanner = () => {
     return (
-        <section className=' h-full w-full py-8'>
-            <div className='grid md:grid-cols-2 mx-16'>
-                <div className='relative min-h-[300px] w-full mx-auto'>
+        <section className='h-full w-full py-8'>
+            <div className='grid md:grid-cols-2 container'>
+                <div className='relative min-h-[300px] w-full'>
                     <Image src='/fafabean.png' alt='circle' width={300} height={300} />
                 </div>
                 <div>
-                    <div className='leading-10 text-3xl'>
+                    <div className='leading-10 text-xl md:text-3xl'>
                         커피 솔루션
                     </div>
                     <div>
@@ -74,7 +74,7 @@ const WholesaleBanner = () => {
                         <br />
                         <br />
 
-                        <div className='leading-10 text-3xl'>
+                        <div className='leading-10 text-xl md:text-3xl'>
                             창업 교육, 팀원 교육
                         </div>
 
