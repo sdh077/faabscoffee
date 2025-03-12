@@ -41,7 +41,7 @@ const ProductRow = ({ item }: { item: ProductProp3 }) => {
         )}
       </div> */}
       <div className="">
-        <Link href={item.content ?? '/'} target='_blank'>
+        <Link href={item.link ?? '/'} target='_blank'>
           <button
             type="button"
             tabIndex={0}

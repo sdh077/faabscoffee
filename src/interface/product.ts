@@ -4,7 +4,7 @@ export type IProduct = {
   name: string;
   eng_name: string;
   description: string;
-  content: string;
+  link: string;
   category_id: number;
   image: string;
   type: string;
