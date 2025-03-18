@@ -15,7 +15,7 @@ const getProduct = async (): Promise<ProductProp3[]> => {
 
 const MainSection = async () => {
   return (
-    <div className=' h-[300px] md:h-[80vh] bg-cover relative' style={{
+    <div className=' h-[300px] md:h-[80vh] bg-cover relative bg-center' style={{
       backgroundImage: "url('/wholesale.png')"
     }}>
     </div>
