@@ -3,22 +3,34 @@ import { ProductRow, ProductView } from '@/components/root/ProductView'
 import { Suspense } from 'react'
 import SectionTitle from '@/components/root/SectionTitle'
 import { ProductProp3 } from '@/interface/product'
-import Image from 'next/image'
 import React from 'react'
 const getProduct = async (): Promise<ProductProp3[]> => {
-  return await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/product?ids=1,3,4,5`).then(res => res.json())
+  return await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/product?ids=1,3,4,5,6,7`).then(res => res.json())
     .catch((e) => {
       console.log(e)
       return []
     })
 }
-
 const MainSection = async () => {
   return (
-    <div className=' h-[300px] md:h-[80vh] bg-cover relative bg-center' style={{
-      backgroundImage: "url('/wholesale.png')"
-    }}>
+    <div className='h-[300px] md:h-[80vh] relative overflow-hidden'>
+      <video
+        className='absolute top-0 left-0 w-full h-full object-cover'
+        src='./bg-video.mp4'
+        autoPlay
+        loop
+        muted
+        playsInline
+      />
+      <div className='absolute bottom-4 right-4 text-white text-sm md:text-lg font-semibold drop-shadow-md'>
+        FAABS COFFEE
+      </div>
+      {/* 비디오 위에 내용이 필요하면 여기에 추가 */}
     </div>
+    // <div className=' h-[300px] md:h-[80vh] bg-cover relative bg-center' style={{
+    //   backgroundImage: "url('/wholesale.png')"
+    // }}>
+    // </div>
     // <div className='container w-full mx-auto mb-16'>
     //   <Image src={'/wholesale.png'} width={2400} height={800} alt='main' />
     //   {/* <Image src={'/bgbg.png'} width={2400} height={800} alt='main' /> */}
@@ -38,7 +50,7 @@ const MainItem = async ({ items }: {
   return (
     <section className="container py-6 ">
       <SectionTitle >
-        FRESHEST ARRIVALS
+        커피의 다양한 얼굴을 표현하다.
       </SectionTitle>
       <ProductView>
         <>
@@ -74,7 +86,7 @@ const MainLink = ({ links }: { links: { title: string, description: string }[] }
   )
 }
 
-const Page = () => {
+const Page = async () => {
   const items = [
     {
       title: '파브스 커피 블랜드 원두 3종',
