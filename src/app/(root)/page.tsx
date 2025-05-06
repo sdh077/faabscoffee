@@ -25,7 +25,7 @@ const MainSection = async () => {
       <div className='absolute bottom-4 right-4 text-white text-sm md:text-lg font-semibold drop-shadow-md'>
         Origin country visiting
         <br />
-        Panama Janson farm baby Sidra veraiety
+        Panama Janson farm baby Sidra variety
       </div>
       {/* 비디오 위에 내용이 필요하면 여기에 추가 */}
     </div>
