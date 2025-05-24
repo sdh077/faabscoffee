@@ -4,7 +4,7 @@ import { useState } from 'react'
 import * as XLSX from 'xlsx'
 
 export default function ExcelPage() {
-  const [itemCounts, setItemCounts] = useState({
+  const [itemCounts, setItemCounts] = useState<Record<string, number>>({
     "커피=#1 탄자니아 아카시아 힐스 SL28 워시드, 중량=200g": 0,
     "커피=#2 코스타리카 로스 산토스 마운틴 워터 프로세스 디카페인, 중량=200g": 0,
     "커피=#3 르완다 봄보 레드버번 허니, 중량=200g": 0,
@@ -46,14 +46,15 @@ export default function ExcelPage() {
     const workbook = XLSX.read(data)
     const sheetName = workbook.SheetNames[0]
     const worksheet = workbook.Sheets[sheetName]
-
     const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 }) as string[][]
+
     const updatedCounts = { ...itemCounts }
 
     jsonData.forEach(row => {
-      const qty = Number(row[6]) || 1
-      if (row[4] && updatedCounts.hasOwnProperty(row[4])) {
-        updatedCounts[row[4]] += qty
+      const itemName = row[4]?.trim() // 상품명
+      const quantity = Number(row[6]) || 1 // 수량
+      if (itemName && updatedCounts.hasOwnProperty(itemName)) {
+        updatedCounts[itemName] += quantity
       }
     })
 
