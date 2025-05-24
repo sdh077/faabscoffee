@@ -53,8 +53,14 @@ export default function ExcelPage() {
     jsonData.forEach(row => {
       const itemName = row[4]?.trim() // 상품명
       const quantity = Number(row[6]) || 1 // 수량
-      if (itemName && updatedCounts.hasOwnProperty(itemName)) {
-        updatedCounts[itemName] += quantity
+      if (itemName) {
+        if (updatedCounts.hasOwnProperty(itemName)) {
+          // 기존에 key가 있으면 수량을 누적
+          updatedCounts[itemName] += quantity
+        } else {
+          // key가 없으면 새로 추가
+          updatedCounts[itemName] = quantity
+        }
       }
     })
 
