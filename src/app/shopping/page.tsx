@@ -4,7 +4,7 @@ import { useState } from 'react'
 import * as XLSX from 'xlsx'
 
 export default function ExcelPage() {
-  const [itemCounts, setItemCounts] = useState<Record<string, number>>({
+  const initialCounts: Record<string, number> = {
     "커피=#1 탄자니아 아카시아 힐스 SL28 워시드, 중량=200g": 0,
     "커피=#2 코스타리카 로스 산토스 마운틴 워터 프로세스 디카페인, 중량=200g": 0,
     "커피=#3 르완다 봄보 레드버번 허니, 중량=200g": 0,
@@ -36,7 +36,9 @@ export default function ExcelPage() {
     "커피=드립백 - 모건타운 블렌드, 중량=해당없음": 0,
     "커피=드립백 - 홈타운 블렌드, 중량=해당없음": 0,
     "커피=언스페셜티 분쇄도 가이드 종이(구매 1건당 최대 1개 제공), 중량=해당없음": 0,
-  })
+  }
+
+  const [itemCounts, setItemCounts] = useState<Record<string, number>>(initialCounts)
 
   const handleFile = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
@@ -48,28 +50,26 @@ export default function ExcelPage() {
     const worksheet = workbook.Sheets[sheetName]
     const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 }) as string[][]
 
-    const updatedCounts = { ...itemCounts }
+    const updatedCounts: Record<string, number> = {} // 매 업로드마다 초기화
 
     jsonData.forEach(row => {
-      const itemName = row[4]?.trim() // 상품명
-      const quantity = Number(row[6]) || 1 // 수량
+      const itemName = row[4]?.trim()
+      const quantity = Number(row[6]) || 1
       if (itemName) {
         if (updatedCounts.hasOwnProperty(itemName)) {
-          // 기존에 key가 있으면 수량을 누적
           updatedCounts[itemName] += quantity
         } else {
-          // key가 없으면 새로 추가
           updatedCounts[itemName] = quantity
         }
       }
     })
 
-    setItemCounts(updatedCounts)
+    setItemCounts({ ...initialCounts, ...updatedCounts }) // 초기화 후 새 데이터 반영
   }
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl mb-4">엑셀 업로드 및 수량 추가</h1>
+      <h1 className="text-2xl mb-4">엑셀 업로드 및 초기화 카운트</h1>
       <input type="file" accept=".xlsx, .xls, .csv" onChange={handleFile} className="mb-4" />
       {Object.entries(itemCounts).map(([key, value]) =>
         <div key={key}>{key} : {value}</div>
