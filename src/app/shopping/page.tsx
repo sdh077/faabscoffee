@@ -39,7 +39,7 @@ export default function ExcelPage() {
   }
 
   const [itemCounts, setItemCounts] = useState<Record<string, number>>(initialCounts)
-
+  const [order, setOrder] = useState<Record<string, number>>({})
   const handleFile = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
     if (!file) return
@@ -51,7 +51,8 @@ export default function ExcelPage() {
     const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 }) as string[][]
 
     const updatedCounts: Record<string, number> = {} // 매 업로드마다 초기화
-
+    const orderTemp: Record<string, number> = {} // 매 업로드마다 초기화
+    jsonData.shift()
     jsonData.forEach(row => {
       const itemName = row[4]?.trim()
       const quantity = Number(row[6]) || 1
@@ -62,8 +63,18 @@ export default function ExcelPage() {
           updatedCounts[itemName] = quantity
         }
       }
-    })
 
+      const orderNo = row[0]
+      const price = Number(row[0]) || 0
+      if (orderNo) {
+        if (orderTemp.hasOwnProperty(orderNo)) {
+          orderTemp[orderNo] += price
+        } else {
+          orderTemp[orderNo] = price
+        }
+      }
+    })
+    setOrder(orderTemp)
     setItemCounts({ ...initialCounts, ...updatedCounts }) // 초기화 후 새 데이터 반영
   }
 
@@ -71,6 +82,21 @@ export default function ExcelPage() {
     <div className="p-4">
       <h1 className="text-2xl mb-4">엑셀 업로드 및 초기화 카운트</h1>
       <input type="file" accept=".xlsx, .xls, .csv" onChange={handleFile} className="mb-4" />
+
+      <hr />
+      <div>
+        총 주문 {Object.entries(order).length}개
+      </div>
+      <div>
+        사은품
+        <div>
+          {Object.entries(order).filter(([_, value]) => value >= 60000).length} 파파빈
+        </div>
+        <div>
+          {Object.entries(order).filter(([_, value]) => value >= 120000).length} 센서리 컵
+        </div>
+      </div>
+      <hr />
       {Object.entries(itemCounts).map(([key, value]) =>
         <div key={key}>{key} : {value}</div>
       )}
