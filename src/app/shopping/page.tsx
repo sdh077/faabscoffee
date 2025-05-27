@@ -64,14 +64,10 @@ export default function ExcelPage() {
         }
       }
 
-      const orderNo = row[0]
-      const price = Number(row[0]) || 0
+      const orderNo = row[1]
+      const price = Number(row[8]) || 0
       if (orderNo) {
-        if (orderTemp.hasOwnProperty(orderNo)) {
-          orderTemp[orderNo] += price
-        } else {
-          orderTemp[orderNo] = price
-        }
+        orderTemp[orderNo] = price
       }
     })
     setOrder(orderTemp)
