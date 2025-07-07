@@ -5,7 +5,7 @@ import Link from 'next/link'
 import React from 'react'
 const Hero = () => {
   return (
-    <section className=' h-[300px] md:h-[80vh] bg-cover flex items-end object-center' style={{
+    <section className=' h-[300px] md:h-[60vh] bg-cover flex items-end object-center' style={{
       backgroundImage: 'url(/bgbg.png)'
     }}>
       {/* <div className='container text-white flex flex-col gap-36 '>

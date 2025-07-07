@@ -13,7 +13,7 @@ const ProductView = ({ children }: { children: ReactNode }) => {
 
 const ProductRow = ({ item }: { item: ProductProp3 }) => {
   return (
-    <li className="home-item relative flex flex-col gap-6 " key={item.id}>
+    <li className="home-item relative flex flex-col gap-2 " key={item.id}>
       <div className="relative w-full h-[380px] overflow-hidden">
         <Image
           className=" w-full object-cover object-center "
@@ -23,13 +23,13 @@ const ProductRow = ({ item }: { item: ProductProp3 }) => {
           src={item.image}
         />
       </div>
-      <div className="underline-black flex flex-col gap-6 min-h-20">
+      <div className="underline-black flex flex-col gap-6 min-h-12">
         <div className="font-semibold">
           {item.name}
           <div className="font-thin">{item.price}원</div>
         </div>
       </div>
-      <div className='min-h-16'>
+      <div className='min-h-2'>
         {item.description}
       </div>
       {/* <div className="min-h-16 flex flex-col gap-2">

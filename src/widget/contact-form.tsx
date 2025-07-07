@@ -17,9 +17,6 @@ import { z } from "zod"
 import { useForm } from "react-hook-form"
 import { usePathname, useRouter } from "next/navigation"
 import { Checkbox } from "@/components/ui/checkbox"
-import { toast } from "@/hooks/use-toast"
-import { Label } from "../ui/label"
-import { useState } from "react"
 
 const FormSchema = z.object({
   name: z.string().min(1, {
@@ -43,7 +40,7 @@ const FormSchema = z.object({
 
 const ContactForm = ({ purpose }: { purpose: string }) => {
   const router = useRouter()
-  const [submit, setSubmit] = useState(false)
+  const pathname = usePathname()
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -62,7 +59,6 @@ const ContactForm = ({ purpose }: { purpose: string }) => {
     },
   })
   async function onSubmit(data: z.infer<typeof FormSchema>) {
-    setSubmit(true)
     try {
       // FormData를 사용하여 데이터를 전송
       const body = JSON.stringify({ ...data, purpose })
@@ -77,19 +73,34 @@ const ContactForm = ({ purpose }: { purpose: string }) => {
 
       const res = await response.json();
       if (res.data) {
-        toast({
-          title: "신청이 완료되었습니다",
-          description: "검토 후 연락드리겠습니다."
-        })
-        window.location.reload()
-      } else setSubmit(false)
+        router.push(`${pathname}/confirm`)
+      }
     } catch (error) {
       console.error('Error submitting form:', error);
     }
   }
+
+  const items = [
+    {
+      id: "dark",
+      label: "파브스 다크 블렌드",
+    },
+    {
+      id: "mogan",
+      label: "모건타운 블렌드",
+    },
+    {
+      id: "home",
+      label: "홈타운 블렌드",
+    },
+    {
+      id: "single",
+      label: "싱글",
+    },
+  ]
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-6 m-4 md:m-10 rounded-xl">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-6 p-10 rounded-xl">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <FormField
             control={form.control}
@@ -169,7 +180,51 @@ const ContactForm = ({ purpose }: { purpose: string }) => {
               </FormItem>
             )}
           />
-
+          {purpose === 'sample' && <FormField
+            control={form.control}
+            name="bean"
+            render={() => (
+              <FormItem>
+                <div className="mb-4">
+                  <FormLabel className="text-base">희망 원두 선택</FormLabel>
+                </div>
+                {items.map((item) => (
+                  <FormField
+                    key={item.id}
+                    control={form.control}
+                    name="bean"
+                    render={({ field }) => {
+                      return (
+                        <FormItem
+                          key={item.id}
+                          className="flex flex-row items-start space-x-3 space-y-0"
+                        >
+                          <FormControl>
+                            <Checkbox
+                              checked={field.value?.includes(item.id)}
+                              onCheckedChange={(checked) => {
+                                return checked
+                                  ? field.onChange([...field.value, item.id])
+                                  : field.onChange(
+                                    field.value?.filter(
+                                      (value) => value !== item.id
+                                    )
+                                  )
+                              }}
+                            />
+                          </FormControl>
+                          <FormLabel className="text-sm font-normal">
+                            {item.label}
+                          </FormLabel>
+                        </FormItem>
+                      )
+                    }}
+                  />
+                ))}
+                <FormMessage />
+              </FormItem>
+            )}
+          />}
           <FormField
             control={form.control}
             name="description"
@@ -198,15 +253,11 @@ const ContactForm = ({ purpose }: { purpose: string }) => {
 실명이 아니거나 타인의 주민등록번호를 도용 및 허위로 가입된 아이디는 법적인 보호를 받을 수 없으며, 서비스 이용에 제한을 받게 됩니다.
 
             `} />
-            <div className="flex gap-1 items-center">
-              <Checkbox id="ok" required />
-              <Label htmlFor="ok">
-                동의함
-              </Label>
-            </div>
+            <Checkbox required className="mt-2" />
+            동의함
           </div>
         </div>
-        <Button disabled={submit} type="submit" className="w-full text-white">샘플 신청</Button>
+        <Button type="submit" className="w-full">샘플 신청</Button>
       </form>
     </Form>
   )
