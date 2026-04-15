@@ -17,6 +17,7 @@ import { z } from "zod"
 import { useForm } from "react-hook-form"
 import { usePathname, useRouter } from "next/navigation"
 import { Checkbox } from "@/components/ui/checkbox"
+import { useRef } from "react"
 
 const FormSchema = z.object({
   name: z.string().min(1, {
@@ -41,6 +42,7 @@ const FormSchema = z.object({
 const ContactForm = ({ purpose }: { purpose: string }) => {
   const router = useRouter()
   const pathname = usePathname()
+  const submitting = useRef(false)
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -60,6 +62,8 @@ const ContactForm = ({ purpose }: { purpose: string }) => {
   })
 
   async function onSubmit(data: z.infer<typeof FormSchema>) {
+    if (submitting.current) return
+    submitting.current = true
     try {
       const body = JSON.stringify({ ...data, purpose })
       const response = await fetch(`/api/contact`, {
@@ -77,6 +81,7 @@ const ContactForm = ({ purpose }: { purpose: string }) => {
       }
     } catch (error) {
       console.error('Error submitting form:', error)
+      submitting.current = false
     }
   }
 
@@ -89,7 +94,7 @@ const ContactForm = ({ purpose }: { purpose: string }) => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-8 py-10">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-8 py-10 px-4 md:px-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <FormField
             control={form.control}

@@ -7,21 +7,27 @@ import React from 'react'
 
 const Hero = () => {
     return (
-        <section className=' h-[300px] md:h-[80vh] bg-cover relative overflow-x-hidden' style={{
-        }}>
-            <div className='container '>
-                <div className='absolute bottom-24 flex flex-col gap-36 w-full'>
-                    <div className=' text-3xl md:text-[120px]'>Wholesale</div>
-                    <div className='flex justify-between w-[50%]'>
-                        <div className='text-2xl'>
-                            전세계의 다양한 커피 생산자와 소비자를 연결하는 <br /> 파브스커피의 파트너가 되어주세요.
-                        </div>
-                        {/* <Link href={'/auth/signin'}><Button>파트너사 로그인</Button></Link> */}
+        <section className='relative h-[300px] md:h-[85vh] overflow-hidden'>
+            <Image
+                src='/wholesale.png'
+                alt='wholesale'
+                fill
+                className='object-cover object-center'
+                priority
+            />
+            <div className='absolute inset-0 bg-black/40' />
+            <div className='container relative h-full flex flex-col justify-end pb-16 md:pb-24 gap-6 md:gap-10 text-white'>
+                <div className='flex items-end gap-6'>
+                    <div className='text-4xl md:text-[100px] font-light leading-none tracking-tight'>Wholesale</div>
+                    <div className='hidden md:block w-px h-16 bg-white/60 mb-2' />
+                    <div className='hidden md:block text-sm text-white/80 leading-7 mb-2'>
+                        전세계의 다양한 커피 생산자와 소비자를 연결하는<br />파브스커피의 파트너가 되어주세요.
                     </div>
                 </div>
-                <div className='right-2 md:right-24 top-[30%] absolute w-32 h-32 md:w-96 md:h-32'>
-                    <Image src='/beans2.png' width={1000} height={700} alt='beans' />
+                <div className='md:hidden text-sm text-white/80 leading-6'>
+                    전세계의 다양한 커피 생산자와 소비자를 연결하는<br />파브스커피의 파트너가 되어주세요.
                 </div>
+                <div className='w-16 h-px bg-white/60' />
             </div>
         </section>
     )
