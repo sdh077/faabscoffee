@@ -1,16 +1,21 @@
-import { HeroHighlight } from "@/components/ui/hero-highlight";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import Link from "next/link";
 
-export default function HeroHighlightDemo() {
+export default function ConfirmPage() {
   return (
-    <HeroHighlight>
-      <h1
-        className="text-md px-4 md:text-xl lg:text-2xl font-bold text-neutral-700 dark:text-white max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto "
-      >
-        도매 신청이 완료되었습니다.
-        <div>
-          확인 후 연락드리겠습니다
+    <section className="py-16 border-dashed border-b-2 border-primary">
+      <div className="container flex flex-col items-center gap-4">
+        <div className="flex flex-col justify-center items-center">
+          <Image src="/fafabean.png" alt="파브스커피" width={248} height={350} />
+          <div>감사합니다.</div>
+          <div>납품 상담 신청이 완료되었습니다.</div>
         </div>
-      </h1>
-    </HeroHighlight>
+        <div className="flex flex-col justify-center items-center pt-4 w-fit pb-1 px-2 border-2 border-primary text-sm">
+          <div>납품 상담신청 확인 후 순차적으로 연락드립니다.</div>
+          <Link href={'/'}><Button>메인으로</Button></Link>
+        </div>
+      </div>
+    </section>
   );
 }
