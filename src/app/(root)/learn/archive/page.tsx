@@ -59,15 +59,15 @@ const Docs = () => {
     <div className='flex flex-col gap-8 container my-16'>
       <SectionTitle>ARCHIVE</SectionTitle>
       {[1].map(i =>
-        <div className='flex justify-between' key={i}>
-          <div className='text-2xl'>원가 및 마진율 계산</div>
-          <Link href={`/learn/archive/${i}`} >
-            <div className='flex items-center'>
+        <Link href={`/learn/archive/${i}`} key={i}>
+          <div className='flex justify-between items-center py-4 border-b hover:bg-muted/40 px-2 transition-colors cursor-pointer'>
+            <div className='text-2xl'>원가 및 마진율 계산</div>
+            <div className='flex items-center gap-2 text-muted-foreground text-sm'>
               이준선
               <BiRightArrow />
             </div>
-          </Link>
-        </div>
+          </div>
+        </Link>
       )
       }
     </div >
