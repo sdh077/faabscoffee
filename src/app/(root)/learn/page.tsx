@@ -51,12 +51,40 @@ const MainLink = ({ links }: { links: { title: string, description: string, link
     </section >
   )
 }
+const papabeanVideos = [
+  { id: 'dSbkBGw_XlY', title: '파파빈 추출 레시피 : 오레아 Z1' },
+]
+
+const PapabeanStudy = () => {
+  return (
+    <div className='flex flex-col gap-8 my-16'>
+      <SectionTitle>파파빈 스터디</SectionTitle>
+      <ul className='grid grid-cols-1 md:grid-cols-3 gap-8'>
+        {papabeanVideos.map((video) => (
+          <li key={video.id} className='flex flex-col gap-3'>
+            <div className='relative w-full aspect-video rounded-md overflow-hidden'>
+              <iframe
+                src={`https://www.youtube.com/embed/${video.id}`}
+                title={video.title}
+                allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+                allowFullScreen
+                className='absolute inset-0 w-full h-full'
+              />
+            </div>
+            <p className='text-sm font-medium'>{video.title}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
 const Docs = () => {
   return (
     <div className='flex flex-col gap-8 my-16'>
       <SectionTitle>ARCHIVE</SectionTitle>
       {[1].map(i =>
-        <Link href={`/learn/archive/${i}`} key={i}>
+        <Link href={`/learn/learn/${i}`} key={i}>
           <div className='flex justify-between items-center py-4 border-b hover:bg-muted/40 px-2 transition-colors cursor-pointer'>
             <div className='text-2xl'>원가 및 마진율 계산</div>
             <div className='flex items-center gap-2 text-muted-foreground text-sm'>
@@ -86,6 +114,7 @@ const page = () => {
       <div className='text-5xl'>커피의 다양한 얼굴을 표현하다.</div>
       {/* <Hero /> */}
       <MainLink links={items} />
+      <PapabeanStudy />
       <Docs />
     </main>
   )

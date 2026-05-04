@@ -1,4 +1,13 @@
+import SectionTitle from '@/components/root/SectionTitle'
 import React from 'react'
+
+const videos = [
+  { id: 'MY4ogLO3dsI', title: '물음 인터뷰' },
+  { id: 'ZjsZJB0RPDs', title: '언스페셜티 스몰월픽' },
+  { id: 'N9cqCAPMoi4', title: '커디터 CC' },
+  { id: 'jQzERBmFcbY', title: 'MMS 파브스 커피 소개' },
+  { id: 'qhWkdNlJVaI', title: '파브스 커피 삥타이거' },
+]
 
 const page = () => {
   return (
@@ -12,6 +21,29 @@ const page = () => {
           alt='파브스 커피 브랜드 스토리'
           className='w-full h-auto'
         />
+      </section>
+
+      {/* 파브스 커피 소개 영상 */}
+      <section className='border-t py-16 md:py-20 container'>
+        <div className='flex flex-col gap-10'>
+          <SectionTitle>파브스 커피 소개</SectionTitle>
+          <ul className='grid grid-cols-1 md:grid-cols-3 gap-10'>
+            {videos.map((video) => (
+              <li key={video.id} className='flex flex-col gap-3'>
+                <div className='relative w-full aspect-video rounded-md overflow-hidden'>
+                  <iframe
+                    src={`https://www.youtube.com/embed/${video.id}`}
+                    title={video.title}
+                    allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+                    allowFullScreen
+                    className='absolute inset-0 w-full h-full'
+                  />
+                </div>
+                <p className='text-base font-medium'>{video.title}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
 
       {/* 주요 수상 & 타이틀 */}
