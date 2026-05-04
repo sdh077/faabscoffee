@@ -1,4 +1,4 @@
-import ContactForm from '@/components/root/ContactForm'
+import ContactAccordion from './ContactAccordion'
 import SectionTitle from '@/components/root/SectionTitle'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
@@ -62,6 +62,50 @@ const WholesaleLink = ({ links }: { links: { title: string, description: string,
         </section >
     )
 }
+const partnerImages = [
+    'https://k.kakaocdn.net/dn/DJ8Td/dJMcadUH1Jv/SEiKXfVwmSSkiAOKb5SKo1/img_xl.jpg',
+    'https://k.kakaocdn.net/dn/bqZWjX/dJMcajm5peA/guYYnwy0Ri1E4tcwYoYMv1/img_xl.jpg',
+    'https://k.kakaocdn.net/dn/cbNfdJ/dJMcag41sCk/MkqtqPa2Kgh6o8DP1WYClK/img_xl.jpg',
+    'https://k.kakaocdn.net/dn/zH0aJ/dJMcaiV1aje/2ziovaKMH0OXZNkKv2pk61/img_xl.jpg',
+    'https://k.kakaocdn.net/dn/b0FDlr/dJMcahJDvoD/NJWh9rw6qbakn0tqUrqL5K/img_xl.jpg',
+    'https://k.kakaocdn.net/dn/PVMaj/dJMcadUH1Jw/ZHfT7bGK1AsWi9sk3x63S0/img_xl.jpg',
+    'https://k.kakaocdn.net/dn/nAg9p/dJMcag41sCj/L2Gum3K7Fqnq9yEtvEUMO1/img_xl.jpg',
+    'https://k.kakaocdn.net/dn/cY8JdL/dJMcabCDKBl/6bIbGYj9uRa3k38I4CllHK/img_xl.jpg',
+    'https://k.kakaocdn.net/dn/bOUgfZ/dJMcahJDvoE/KqCbwmagvDQDKNPLZ7T2U0/img_xl.jpg',
+    'https://k.kakaocdn.net/dn/tbPM2/dJMcadUH1Jx/twxoUgZgRjIrdpHKMMF0q0/img_xl.jpg',
+    'https://k.kakaocdn.net/dn/w7tqf/dJMcahv5Btw/nYTyWQKiUAw4oczzc5lGDK/img_xl.jpg',
+    'https://k.kakaocdn.net/dn/c5kMWH/dJMcaiV1ajd/K8aQJwcYmnVc5B7SWkxNXK/img_xl.jpg',
+]
+
+const PartnerSection = () => {
+    return (
+        <section className='container py-16 flex flex-col gap-8'>
+            <SectionTitle>파브스 커피와 함께하는 파트너사</SectionTitle>
+            <p className='text-muted-foreground leading-7'>
+                파브스 커피를 사랑해주시는 많은 분들께 감사 인사를 드립니다.<br />
+                2020년 7월 로스터리 오픈부터 함께 해 주신 거래처부터 신규 거래처까지,
+                함께하는 파트너사들이 계셔서 로스팅하며 소통할 수 있는 것 같습니다.
+            </p>
+            <div className='columns-2 md:columns-3 xl:columns-4 gap-3 space-y-3'>
+                {partnerImages.map((src, i) => (
+                    <div key={i} className='break-inside-avoid overflow-hidden rounded-md'>
+                        <Image
+                            src={src}
+                            alt={`파트너사 ${i + 1}`}
+                            width={600}
+                            height={600}
+                            className='w-full h-auto object-cover'
+                        />
+                        {i === partnerImages.length - 1 && (
+                            <p className='text-xs text-muted-foreground mt-1 px-1'>카페 호기심 : 서울 서대문구 창천동</p>
+                        )}
+                    </div>
+                ))}
+            </div>
+        </section>
+    )
+}
+
 const WholesaleBanner = () => {
     return (
         <section className='h-full w-full py-8'>
@@ -141,7 +185,7 @@ const page = () => {
         <main className='flex flex-col gap-32 '>
             <Hero />
             <div className=''>
-                <ContactForm purpose={''} />
+                <ContactAccordion />
 
                 <div className='flex flex-col md:w-[50%] gap-16 mx-[2rem] leading-8'>
                     <div>
@@ -155,8 +199,22 @@ const page = () => {
                     </div>
                 </div>
                 <WholesaleLink links={links} />
+                <PartnerSection />
                 <WholesaleBanner />
             </div>
+            {/* 카카오톡 채널 플로팅 버튼 */}
+            <Link
+                href='https://pf.kakao.com/_qZRYxb'
+                target='_blank'
+                rel='noopener noreferrer'
+                className='fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-3 rounded-full shadow-lg text-sm font-medium text-[#191919] transition-transform hover:scale-105 active:scale-95'
+                style={{ backgroundColor: '#FEE500' }}
+            >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.477 2 2 5.924 2 10.783c0 3.13 1.874 5.88 4.703 7.497L5.6 22l4.259-2.248A11.4 11.4 0 0 0 12 19.566c5.523 0 10-3.924 10-8.783C22 5.924 17.523 2 12 2Z" />
+                </svg>
+                카카오톡 채널 추가
+            </Link>
         </main>
     )
 }
