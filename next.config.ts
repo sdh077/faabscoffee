@@ -38,6 +38,10 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'smartstore.naver.com'
+      },
+      {
+        protocol: 'https',
+        hostname: 'img.youtube.com'
       }
     ],
   },

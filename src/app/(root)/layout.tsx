@@ -33,11 +33,11 @@ const Layout = async ({ children }: { children: ReactNode }) => {
               SHOP
             </Link>
             <DropdownMenu>
-              <DropdownMenuTrigger>LEARN</DropdownMenuTrigger>
+              <DropdownMenuTrigger>FAABS</DropdownMenuTrigger>
               <DropdownMenuContent>
-                <DropdownMenuLabel className='font-normal'><Link href={`/learn`}>커피의 다양한 얼굴을 표현하다.</Link></DropdownMenuLabel>
-                <DropdownMenuLabel className='font-normal'><Link href={`/learn/archive`}>공학적 접근의 로스팅</Link></DropdownMenuLabel>
-                <DropdownMenuLabel className='font-normal'><Link href={`/learn/about`}>파파빈</Link></DropdownMenuLabel>
+                <DropdownMenuLabel className='font-normal'><Link href={`/learn`}>파파빈 스터디</Link></DropdownMenuLabel>
+                <DropdownMenuLabel className='font-normal'><Link href={`/learn/study`}>로스팅 스터디</Link></DropdownMenuLabel>
+                <DropdownMenuLabel className='font-normal'><Link href={`/learn/about`}>파브스가 걸어온 길</Link></DropdownMenuLabel>
               </DropdownMenuContent>
             </DropdownMenu>
 

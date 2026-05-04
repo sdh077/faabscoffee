@@ -2,6 +2,7 @@ import SectionTitle from '@/components/root/SectionTitle'
 import { Button } from '@/components/ui/button'
 import { BiRightArrow } from "react-icons/bi";
 import Link from 'next/link'
+import Image from 'next/image'
 import React from 'react'
 const Hero = () => {
   return (
@@ -73,6 +74,56 @@ const Docs = () => {
     </div >
   )
 }
+const youtubeVideos = [
+  { id: 'Wb5mb55-wpw', title: '로스팅을 부탁해 EP.6' },
+  { id: 'yPF6ngOYLT0', title: '로스팅을 부탁해 EP.5' },
+  { id: 'gqsx83-Dvpg', title: '로스팅을 부탁해 EP.4' },
+  { id: 'XeWAq_B00WA', title: '로스팅을 부탁해 EP.3' },
+  { id: 'K9oHf4djM9E', title: '로스팅을 부탁해 EP.2' },
+  { id: 'gtDu4L86hog', title: '로스팅을 부탁해 EP.1' },
+]
+
+const YoutubeSection = () => {
+  return (
+    <div className='flex flex-col gap-6 container my-8'>
+      <div className='flex items-center justify-between'>
+        <SectionTitle>YOUTUBE</SectionTitle>
+        <Link
+          href='https://youtube.com/playlist?list=PLeqz3CQJylxr4gEN2ucbCecFEwWfM2-g7'
+          target='_blank'
+          rel='noopener noreferrer'
+          className='text-sm text-muted-foreground hover:underline flex items-center gap-1'
+        >
+          전체 재생목록 <BiRightArrow />
+        </Link>
+      </div>
+      <p className='text-muted-foreground'>유튜브 채널 커디터 : 파브스 커피 공동대표 이준선 로스터의 로스팅을 부탁해 시리즈 연재중</p>
+      <ul className='grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-4'>
+        {youtubeVideos.map(video => (
+          <li key={video.id}>
+            <Link
+              href={`https://www.youtube.com/watch?v=${video.id}`}
+              target='_blank'
+              rel='noopener noreferrer'
+              className='flex flex-col gap-2 group'
+            >
+              <div className='relative aspect-video w-full overflow-hidden rounded-md'>
+                <Image
+                  src={`https://img.youtube.com/vi/${video.id}/mqdefault.jpg`}
+                  alt={video.title}
+                  fill
+                  className='object-cover group-hover:scale-105 transition-transform duration-200'
+                />
+              </div>
+              <p className='text-sm font-medium line-clamp-2 group-hover:underline'>{video.title}</p>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
 const page = () => {
   const items = [
     {
@@ -88,7 +139,7 @@ const page = () => {
     <main className='flex flex-col gap-8 container my-16'>
       <div className='text-5xl'>공학적 접근의 로스팅</div>
       <div>공동대표이자 헤드 로스터인 이준선 대표는 전공한 공학적 이해를 바탕으로 로스팅을 연구하고 로스팅 결과물을 균일하게 도출하도록 파브스 로스터리를 이끌고 있습니다. 파브스 커피가 추구하는 클린컵, 질감의 표현을 다각도로 연구하며 커피를 로스팅하고 있습니다.</div>
-      <Docs />
+      <YoutubeSection />
     </main>
   )
 }

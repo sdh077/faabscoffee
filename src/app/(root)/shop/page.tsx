@@ -1,32 +1,12 @@
+export const dynamic = 'force-dynamic'
+
 import { Suspense } from 'react'
 import SectionTitle from '@/components/root/SectionTitle'
 import { createClient } from '@/lib/supabase/server'
-import Image from 'next/image'
-import React, { Fragment } from 'react'
-import { FilterSelection } from './FilterSelection'
-import { Button } from '@/components/ui/button'
+import React from 'react'
 import { CategoryButton } from './CategoryButton'
 import { ProductView, ProductRow } from '@/components/root/ProductView'
 import { ICategory, ProductProp3 } from '@/interface/product'
-
-const getCategory = async (): Promise<ICategory[]> => {
-  return await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/category`)
-    .then(res => res.json())
-    .catch((e) => {
-      console.log(e)
-      return []
-    })
-}
-
-
-const getProducts = async (category: string): Promise<ProductProp3[]> => {
-  return await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/product?category=${category}`)
-    .then(res => res.json())
-    .catch((e) => {
-      console.log(e)
-      return []
-    })
-}
 
 async function page({
   searchParams,
@@ -34,10 +14,19 @@ async function page({
   searchParams: Promise<{ category: string }>
 }) {
   const { category } = await searchParams
-
-  const categories = await getCategory()
   const categoryNo = (category ?? '1') as string
-  const products = await getProducts(categoryNo)
+
+  const supabase = await createClient()
+  const [{ data: categories }, { data: products }] = await Promise.all([
+    supabase.from('category').select('*').eq('use_yn', true).returns<ICategory[]>(),
+    supabase
+      .from('product')
+      .select('*, product_option(*,category_option(*))')
+      .eq('is_delete', false)
+      .eq('category_id', categoryNo)
+      .order('id', { ascending: false })
+      .returns<ProductProp3[]>(),
+  ])
   return (
     <section className="container py-6 flex flex-col gap-4 ">
       <SectionTitle>

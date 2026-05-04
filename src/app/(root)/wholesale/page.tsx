@@ -7,21 +7,25 @@ import React from 'react'
 
 const Hero = () => {
     return (
-        <section className='relative h-[300px] md:h-[85vh] overflow-hidden'>
-            <Image
-                src='/wholesale.png'
-                alt='wholesale'
-                fill
-                className='object-cover object-center'
-                priority
-            />
-            <div className='absolute inset-0 bg-black/40' />
-            <div className='container relative h-full flex flex-col justify-end pb-16 md:pb-24 gap-6 md:gap-10 text-white'>
+        <section className='flex flex-col md:flex-row md:h-[85vh]'>
+            {/* 영상 - 모바일: 상단, 데스크탑: 왼쪽 절반 */}
+            <div className='w-full md:w-1/2 h-[260px] md:h-full overflow-hidden'>
+                <video
+                    src='/bg.mp4'
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className='w-full h-full object-cover'
+                />
+            </div>
+            {/* 텍스트 - 모바일: 영상 바로 아래, 데스크탑: 오른쪽 절반 */}
+            <div className='w-full md:w-1/2 flex flex-col justify-end pb-12 md:pb-24 px-8 md:px-16 gap-6 md:gap-10 bg-black text-white'>
                 <div className='flex items-end gap-6'>
-                    <div className='text-4xl md:text-[100px] font-light leading-none tracking-tight'>Wholesale</div>
+                    <div className='text-4xl md:text-[80px] font-light leading-none tracking-tight'>Wholesale</div>
                     <div className='hidden md:block w-px h-16 bg-white/60 mb-2' />
                     <div className='hidden md:block text-sm text-white/80 leading-7 mb-2'>
-                        전세계의 다양한 커피 생산자와 소비자를 연결하는<br />파브스커피의 파트너가 되어주세요.
+                        파트너사와 함께 성장하는 파브스 커피 원두 납품
                     </div>
                 </div>
                 <div className='md:hidden text-sm text-white/80 leading-6'>
@@ -137,6 +141,7 @@ const page = () => {
         <main className='flex flex-col gap-32 '>
             <Hero />
             <div className=''>
+                <ContactForm purpose={''} />
 
                 <div className='flex flex-col md:w-[50%] gap-16 mx-[2rem] leading-8'>
                     <div>
@@ -151,7 +156,6 @@ const page = () => {
                 </div>
                 <WholesaleLink links={links} />
                 <WholesaleBanner />
-                <ContactForm purpose={''} />
             </div>
         </main>
     )
