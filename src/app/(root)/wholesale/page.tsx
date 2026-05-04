@@ -186,20 +186,8 @@ const page = () => {
             <Hero />
             <div className=''>
                 <ContactAccordion />
-
-                <div className='flex flex-col md:w-[50%] gap-16 mx-[2rem] leading-8'>
-                    <div>
-                        에스프레소 원두 납품 블랜드 원두, 싱글 오리진, 디카페인 원두
-                        파브스 커피는 파트너사의 운영이 순조롭게 진행될 수 있는
-                        균일한 맛표현의 블랜드 커피와 싱글 오리진, 디카페인 커피를 에스프레소용 원두로 로스팅합니다.
-                    </div>
-                    <div>
-                        핸드드립용 싱글오리진 원두 납품
-                        다양한 국가와 지역 프로세싱의 싱글오리진 원두를 파트너사의 핸드드립 운영방침에 맞게 추천, 제공드립니다.
-                    </div>
-                </div>
-                <WholesaleLink links={links} />
                 <PartnerSection />
+                <WholesaleLink links={links} />
                 <WholesaleBanner />
             </div>
             {/* 카카오톡 채널 플로팅 버튼 */}
