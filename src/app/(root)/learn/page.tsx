@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button'
 import { BiRightArrow } from "react-icons/bi";
 import Link from 'next/link'
 import React from 'react'
+import { createClient } from '@/lib/supabase/server'
 const Hero = () => {
   return (
     <section className=' h-[300px] md:h-[80vh] bg-cover flex items-end object-center' style={{
@@ -79,23 +80,28 @@ const PapabeanStudy = () => {
   )
 }
 
-const Docs = () => {
+const Docs = async () => {
+  const supabase = await createClient('business')
+  const { data: articles } = await supabase
+    .from('learn_article')
+    .select('id, title, writer')
+    .order('created_at', { ascending: false })
+
   return (
-    <div className='flex flex-col gap-8 my-16'>
+    <div className='flex flex-col gap-4 my-16'>
       <SectionTitle>ARCHIVE</SectionTitle>
-      {[1].map(i =>
-        <Link href={`/learn/study/${i}`} key={i}>
+      {articles?.map(article => (
+        <Link href={`/learn/study/${article.id}`} key={article.id}>
           <div className='flex justify-between items-center py-4 border-b hover:bg-muted/40 px-2 transition-colors cursor-pointer'>
-            <div className='text-2xl'>원가 및 마진율 계산</div>
+            <div className='text-2xl'>{article.title}</div>
             <div className='flex items-center gap-2 text-muted-foreground text-sm'>
-              이준선
+              {article.writer}
               <BiRightArrow />
             </div>
           </div>
         </Link>
-      )
-      }
-    </div >
+      ))}
+    </div>
   )
 }
 const page = () => {
