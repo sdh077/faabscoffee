@@ -84,7 +84,7 @@ const Docs = () => {
     <div className='flex flex-col gap-8 my-16'>
       <SectionTitle>ARCHIVE</SectionTitle>
       {[1].map(i =>
-        <Link href={`/learn/learn/${i}`} key={i}>
+        <Link href={`/learn/study/${i}`} key={i}>
           <div className='flex justify-between items-center py-4 border-b hover:bg-muted/40 px-2 transition-colors cursor-pointer'>
             <div className='text-2xl'>원가 및 마진율 계산</div>
             <div className='flex items-center gap-2 text-muted-foreground text-sm'>
