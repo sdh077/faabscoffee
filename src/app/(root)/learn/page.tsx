@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button'
 import { BiRightArrow } from "react-icons/bi";
 import Link from 'next/link'
 import React from 'react'
-import { createClient } from '@/lib/supabase/server'
+import { createServiceClient } from '@/lib/supabase/server'
 const Hero = () => {
   return (
     <section className=' h-[300px] md:h-[80vh] bg-cover flex items-end object-center' style={{
@@ -81,7 +81,7 @@ const PapabeanStudy = () => {
 }
 
 const Docs = async () => {
-  const supabase = await createClient('business')
+  const supabase = createServiceClient('business')
   const { data: articles } = await supabase
     .from('learn_article')
     .select('id, title, writer')

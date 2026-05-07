@@ -1,11 +1,11 @@
-import { createClient } from '@/lib/supabase/server'
+import { createServiceClient } from '@/lib/supabase/server'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { ChevronLeft } from 'lucide-react'
 
 const page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params
-  const supabase = await createClient('business')
+  const supabase = createServiceClient()
   const { data: article } = await supabase
     .from('learn_article')
     .select('*')
