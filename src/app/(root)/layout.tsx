@@ -7,8 +7,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
@@ -35,9 +33,15 @@ const Layout = async ({ children }: { children: ReactNode }) => {
             <DropdownMenu>
               <DropdownMenuTrigger>FAABS</DropdownMenuTrigger>
               <DropdownMenuContent>
-                <DropdownMenuLabel className='font-normal'><Link href={`/learn`}>파파빈 스터디</Link></DropdownMenuLabel>
-                <DropdownMenuLabel className='font-normal'><Link href={`/learn/study`}>로스팅 스터디</Link></DropdownMenuLabel>
-                <DropdownMenuLabel className='font-normal'><Link href={`/learn/about`}>파브스가 걸어온 길</Link></DropdownMenuLabel>
+                <DropdownMenuItem asChild>
+                  <Link href={`/learn`}>파파빈 스터디</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href={`/learn/study`}>로스팅 스터디</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href={`/learn/about`}>파브스가 걸어온 길</Link>
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
 

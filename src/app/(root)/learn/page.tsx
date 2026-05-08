@@ -58,9 +58,9 @@ const papabeanVideos = [
 
 const PapabeanStudy = () => {
   return (
-    <div className='flex flex-col gap-8 my-16'>
+    <div className='flex flex-col gap-6 my-8 md:my-16'>
       <SectionTitle>파파빈 스터디</SectionTitle>
-      <ul className='grid grid-cols-1 md:grid-cols-3 gap-8'>
+      <ul className='grid grid-cols-1 md:grid-cols-3 gap-6'>
         {papabeanVideos.map((video) => (
           <li key={video.id} className='flex flex-col gap-3'>
             <div className='relative w-full aspect-video rounded-md overflow-hidden'>
@@ -88,14 +88,14 @@ const Docs = async () => {
     .order('created_at', { ascending: false })
 
   return (
-    <div className='flex flex-col gap-4 my-16'>
+    <div className='flex flex-col gap-4 my-8 md:my-16'>
       <SectionTitle>ARCHIVE</SectionTitle>
       {articles?.map(article => (
         <Link href={`/learn/study/${article.id}`} key={article.id}>
-          <div className='flex justify-between items-center py-4 border-b hover:bg-muted/40 px-2 transition-colors cursor-pointer'>
-            <div className='text-2xl'>{article.title}</div>
-            <div className='flex items-center gap-2 text-muted-foreground text-sm'>
-              {article.writer}
+          <div className='flex justify-between items-center gap-4 py-4 border-b hover:bg-muted/40 px-2 transition-colors cursor-pointer'>
+            <div className='text-lg md:text-2xl leading-snug'>{article.title}</div>
+            <div className='flex items-center gap-1 text-muted-foreground text-sm shrink-0'>
+              <span className='hidden sm:inline'>{article.writer}</span>
               <BiRightArrow />
             </div>
           </div>
@@ -116,9 +116,8 @@ const page = () => {
     },
   ]
   return (
-    <main className='flex flex-col gap-8 container my-16'>
-      <div className='text-5xl'>커피의 다양한 얼굴을 표현하다.</div>
-      {/* <Hero /> */}
+    <main className='flex flex-col gap-6 container px-4 md:px-6 my-10 md:my-16'>
+      <div className='text-3xl md:text-5xl leading-tight'>커피의 다양한 얼굴을 표현하다.</div>
       <MainLink links={items} />
       <PapabeanStudy />
       <Docs />

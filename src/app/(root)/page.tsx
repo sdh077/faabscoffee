@@ -5,12 +5,22 @@ import SectionTitle from '@/components/root/SectionTitle'
 import { ProductProp3 } from '@/interface/product'
 import VideoCarousel from './VideoCarousel'
 import React from 'react'
+import { createServiceClient } from '@/lib/supabase/server'
+
 const getProduct = async (): Promise<ProductProp3[]> => {
-  return await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/product?ids=1,3,4,5,6,7`).then(res => res.json())
-    .catch((e) => {
-      console.log(e)
-      return []
-    })
+  const supabase = createServiceClient()
+  const { data, error } = await supabase
+    .from('product')
+    .select('*, product_option(*,category_option(*))')
+    .eq('is_delete', false)
+    .in('id', [1, 3, 4, 5, 6, 7])
+    .order('id', { ascending: false })
+    .returns<ProductProp3[]>()
+  if (error) {
+    console.error('getProduct error:', error)
+    return []
+  }
+  return data ?? []
 }
 const MainItem = async ({ items }: {
   items: {
@@ -40,9 +50,6 @@ const MainItem = async ({ items }: {
 const MainLink = ({ links }: { links: { title: string, description: string }[] }) => {
   return (
     <section className="container py-6 ">
-      <SectionTitle>
-        커피의 다양한 얼굴을 표현하다.
-      </SectionTitle>
       <ul className="home-items grid grid-cols-1 gap-12 py-16 xl:grid-cols-4 ">
         {links.map(link =>
           <li className="home-item relative flex flex-col gap-6 w-full" key={link.title}>
